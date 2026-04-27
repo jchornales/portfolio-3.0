@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "content-research-writer",
+  "owner": "kivilaid",
+  "repo": "plugin-marketplace",
+  "path": "plugins/content-research-writer",
+  "branch": "main",
+  "sha": "560a65081b1fc097120e95f04ec82b3fff5549e6",
+  "source": "manual"
+}

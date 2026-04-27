@@ -3,30 +3,26 @@ const projects = [
   {
     cat: "Web Development",
     title: "Rake Engineering Consultancy Website",
-    desc: "Fast, production-ready website built for a growing business client.",
-    label: "Project screenshot",
+    desc: "Production website for a civil engineering consultancy — built for speed, credibility, and lead generation.",
     image: "/uploads/rake-homepage.png",
     delay: 1,
   },
   {
     cat: "Automation",
     title: "CRM → Slack Pipeline",
-    desc: "n8n workflow connecting CRM, email and Slack — saving 10 hrs/week.",
-    label: "Automation flow",
+    desc: "n8n automation connecting CRM, email, and Slack — recovering 10+ hours of manual work per week.",
     delay: 2,
   },
   {
     cat: "AI Chatbot",
     title: "Facebook Lead Bot",
-    desc: "Messenger bot that qualifies leads, answers FAQs, and books calls automatically.",
-    label: "Chatbot demo",
+    desc: "Messenger chatbot that qualifies leads, answers FAQs, and books calls automatically — without a human in the loop.",
     delay: 1,
   },
   {
     cat: "Reservation & Scheduling",
     title: "Custom Booking System",
-    desc: "Custom reservation system with calendar sync and automated reminders.",
-    label: "Scheduling system",
+    desc: "Reservation system with real-time calendar sync and automated reminders — replacing a manual booking process entirely.",
     delay: 2,
   },
 ];
@@ -34,16 +30,24 @@ const projects = [
 
 <section id="projects">
   <div class="container">
-    <div class="section-label reveal">Selected Work</div>
+    <h2 class="section-label reveal">Selected Work</h2>
     <div class="projects-grid">
       {
         projects.map((project) => (
           <div class={`project-item reveal reveal-delay-${project.delay}`}>
             <div class="project-thumb">
               {project.image ? (
-                <img class="project-thumb-img" src={project.image} alt={project.label} />
+                <img
+                  class="project-thumb-img"
+                  src={project.image}
+                  alt={`${project.title} — screenshot`}
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
-                <span class="project-thumb-label">{project.label}</span>
+                <span class="project-thumb-label">{project.cat}</span>
               )}
             </div>
             <div class="project-meta">

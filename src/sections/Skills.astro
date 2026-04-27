@@ -1,32 +1,45 @@
 ---
-const skills = [
-  { name: "React", primary: true },
-  { name: "Next.js", primary: true },
-  { name: "Tailwind CSS", primary: true },
-  { name: "JavaScript", primary: true },
-  { name: "TypeScript", primary: false },
-  { name: "Vue.js", primary: false },
-  { name: "HTML / CSS", primary: false },
-  { name: "Node.js", primary: false },
-  { name: "Supabase", primary: false },
-  { name: "Firebase", primary: false },
-  { name: "n8n", primary: true },
-  { name: "Zapier", primary: true },
-  { name: "Make", primary: true },
-  { name: "OpenAI API", primary: true },
-  { name: "AI Chatbots", primary: false },
-  { name: "Prompt Engineering", primary: false },
-  { name: "Figma", primary: false },
-  { name: "Git", primary: false },
-  { name: "PostgreSQL", primary: false },
+const primarySkills = new Set([
+  "React", "Next.js", "Tailwind CSS", "JavaScript",
+  "n8n", "Zapier", "Make", "OpenAI API",
+]);
+
+const skillGroups = [
+  {
+    label: "Frontend",
+    skills: ["React", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript", "Vue.js", "HTML / CSS"],
+  },
+  {
+    label: "Backend & DB",
+    skills: ["Node.js", "Supabase", "Firebase", "PostgreSQL"],
+  },
+  {
+    label: "Automation & AI",
+    skills: ["n8n", "Zapier", "Make", "OpenAI API", "AI Chatbots", "Prompt Engineering"],
+  },
+  {
+    label: "Tooling",
+    skills: ["Figma", "Git"],
+  },
 ];
 ---
 
 <section id="skills">
   <div class="container">
-    <div class="section-label reveal">Skills</div>
-    <div class="skills-wrap reveal reveal-delay-1">
-      {skills.map((s) => <span class={`skill-pill${s.primary ? " primary" : ""}`}>{s.name}</span>)}
+    <h2 class="section-label reveal">Skills</h2>
+    <div class="skills-groups reveal reveal-delay-1">
+      {
+        skillGroups.map((group) => (
+          <div class="skill-group">
+            <div class="skill-group-label">{group.label}</div>
+            <div class="skills-wrap">
+              {group.skills.map((s) => (
+                <span class={`skill-pill${primarySkills.has(s) ? " primary" : ""}`}>{s}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
