@@ -1,0 +1,48 @@
+---
+const items = [
+{
+    year: "May 2026 – Present",
+    role: "Freelance Software Engineer",
+    company: "Independent · Remote",
+    desc: "Designing and building scalable web applications, automation pipelines, and AI-driven chatbot systems. Focused on architecture, performance, and long-term maintainability to deliver production-ready solutions.",
+    current: true,
+  },
+  {
+    year: "Feb 2023 – Present",
+    role: "Frontend Engineer",
+    company: "Inchcape Digital",
+    desc: "Delivered production-grade user interfaces for client platforms, collaborating closely with design and backend teams. Improved component systems and workflows, accelerating development and ensuring consistency across products.",
+    current: true,
+  },
+  {
+    year: "Sep 2021 – Sep 2022",
+    role: "Junior Frontend Developer",
+    company: "Shore360, Inc.",
+    desc: "Built and maintained UI components while working with cross-functional teams in a production environment. Developed strong foundations in modern frontend practices and scalable development workflows.",
+    current: false,
+  },
+];
+---
+<section id="experience" class="section section-alt">
+  <div class="container">
+    <div class="exp-grid">
+      <div>
+        <div class="eyebrow reveal">Experience</div>
+        <h2 class="section-title reveal reveal-delay-1">Work Timeline</h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-bottom:0;">
+          From first commit in Sep 2021 to building full systems today.
+        </p>
+      </div>
+      <div class="timeline reveal reveal-delay-2">
+        {items.map(it => (
+          <div class={`tl-item${it.current ? ' current' : ''}`}>
+            <div class="tl-year">{it.year}</div>
+            <div class="tl-role">{it.role}</div>
+            <div class="tl-company">{it.company}</div>
+            <div class="tl-desc">{it.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+const contacts = [
+  { icon: '✉',  label: 'Email',    value: 'jchornales.dev@gmail.com' },
+  { icon: 'in', label: 'LinkedIn', value: 'linkedin.com/in/justinehornales' },
+  { icon: 'gh', label: 'GitHub',   value: 'github.com/justinehornales' },
+];
+---
+<section id="contact" class="section">
+  <div class="container">
+    <div class="eyebrow reveal">Contact</div>
+    <h2 class="section-title reveal reveal-delay-1">Let's build something</h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Got a project in mind? A workflow to automate? A chatbot to build? Drop me a
+      message.
+    </p>
+    <div class="contact-grid">
+      <div class="contact-info reveal reveal-delay-1">
+        {contacts.map(c => (
+          <div class="contact-item">
+            <div class="contact-icon">{c.icon}</div>
+            <div>
+              <div class="contact-label">{c.label}</div>
+              <div class="contact-val">{c.value}</div>
+            </div>
+          </div>
+        ))}
+        <div class="open-badge reveal reveal-delay-2">
+          <div class="avail-dot"></div>
+          Open to work · Freelance &amp; Part-time
+        </div>
+      </div>
+      <form class="contact-form reveal reveal-delay-2" onsubmit="return false">
+        <div class="field">
+          <label class="field-label" for="cf-name">Your name</label>
+          <input id="cf-name" class="field-input" type="text" placeholder="John Smith" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="cf-email">Email</label>
+          <input id="cf-email" class="field-input" type="email" placeholder="john@company.com" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="cf-need">What do you need?</label>
+          <input id="cf-need" class="field-input" type="text" placeholder="e.g. Web app, automation, AI chatbot..." />
+        </div>
+        <div class="field">
+          <label class="field-label" for="cf-msg">Message</label>
+          <textarea id="cf-msg" class="field-input" placeholder="Tell me about your project, timeline, and budget..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent" style="align-self:flex-start;">
+          Send Message →
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

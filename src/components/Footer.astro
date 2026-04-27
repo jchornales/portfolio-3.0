@@ -1,0 +1,20 @@
+---
+import LogoMark from './LogoMark.astro';
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <LogoMark size={22} variant="on-dark" />
+        JH.
+      </div>
+      <div class="footer-copy">© {year} Justine Hornales. All rights reserved.</div>
+      <div class="footer-links">
+        <a class="footer-link" href="https://www.linkedin.com/in/justinehornales" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="footer-link" href="https://github.com/justinehornales" target="_blank" rel="noopener">GitHub</a>
+        <a class="footer-link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>

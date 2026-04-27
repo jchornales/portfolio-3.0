@@ -1,0 +1,6 @@
+@import './global/reset.css';
+@import './global/tokens.css';
+@import './global/base.css';
+@import './global/utils.css';
+@import './global/buttons.css';
+@import './global/responsive.css';

@@ -1,0 +1,5 @@
+/* ─── RESPONSIVE ─────────────────────────── */
+@media (max-width: 880px) {
+  .section { padding: 72px 0; }
+  .container { padding: 0 24px; }
+}

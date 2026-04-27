@@ -1,0 +1,11 @@
+/* ─── BASE ───────────────────────────────── */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.65;
+  transition: background .3s var(--ease), color .3s var(--ease);
+  overflow-x: hidden;
+}

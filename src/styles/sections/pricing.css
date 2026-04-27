@@ -1,0 +1,62 @@
+/* ─── PRICING ────────────────────────────── */
+.pricing-tabs { display: flex; gap: 8px; margin-bottom: 40px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 4px; width: fit-content; }
+.pricing-tab { font-family: var(--font-h); font-size: 14px; font-weight: 600; padding: 9px 22px; border-radius: 6px; border: none; background: transparent; color: var(--fg-muted); cursor: pointer; transition: all .18s; }
+.pricing-tab.active { background: var(--bg-card); color: var(--fg); box-shadow: var(--shadow-sm); }
+
+.pricing-panel { display: none; }
+.pricing-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.price-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+.price-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.price-card.featured { border-color: var(--navy); border-width: 2px; }
+[data-theme="dark"] .price-card.featured { border-color: var(--green); }
+.price-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 16px; border-radius: 999px; font-family: var(--font-h); white-space: nowrap;
+}
+[data-theme="dark"] .price-badge { background: var(--green); }
+.price-tier { font-family: var(--font-h); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green-dark); margin-bottom: 8px; }
+[data-theme="dark"] .price-tier { color: var(--green); }
+.price-name { font-family: var(--font-h); font-size: 22px; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
+.price-desc { font-size: 14px; color: var(--fg-muted); margin-bottom: 24px; line-height: 1.5; }
+.price-amount {
+  font-family: var(--font-h); font-weight: 700; color: var(--fg);
+  margin-bottom: 4px; display: flex; align-items: baseline; gap: 4px;
+}
+.price-amount .currency { font-size: 20px; }
+.price-amount .amount  { font-size: 40px; letter-spacing: -1px; }
+.price-amount .period  { font-size: 14px; color: var(--fg-muted); font-weight: 400; }
+.price-note { font-size: 12px; color: var(--fg-muted); margin-bottom: 28px; }
+.price-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
+.price-features { display: flex; flex-direction: column; gap: 10px; flex: 1; margin-bottom: 28px; }
+.price-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--fg-mid); }
+.pf-check { width: 18px; height: 18px; border-radius: 50%; background: var(--green-tint); border: 1px solid rgba(58,186,120,.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.pf-check svg { width: 10px; height: 10px; }
+.pf-x { width: 18px; height: 18px; border-radius: 50%; background: var(--bg-alt); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; color: var(--fg-muted); font-size: 10px; }
+.price-feature.dim { color: var(--fg-muted); opacity: .5; }
+.price-cta { width: 100%; font-family: var(--font-h); font-size: 15px; font-weight: 600; padding: 13px; border-radius: 8px; border: none; cursor: pointer; transition: all .18s; text-align: center; display: block; }
+.price-cta.primary { background: var(--navy); color: #fff; }
+.price-cta.primary:hover { background: var(--navy-dark); }
+.price-cta.accent  { background: var(--green); color: #fff; }
+.price-cta.accent:hover  { background: var(--green-dark); }
+.price-cta.outline { background: transparent; color: var(--fg); border: 1.5px solid var(--border-mid); }
+.price-cta.outline:hover { border-color: var(--navy); color: var(--navy); }
+[data-theme="dark"] .price-cta.outline:hover { border-color: var(--green); color: var(--green); }
+
+.pricing-note {
+  margin-top: 32px; text-align: center;
+  font-size: 14px; color: var(--fg-muted);
+  padding: 16px 24px; background: var(--bg-alt);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.pricing-note a { color: var(--green-dark); font-weight: 600; }
+[data-theme="dark"] .pricing-note a { color: var(--green); }
+
+@media (max-width: 880px) { .pricing-panel.active { grid-template-columns: 1fr; } }

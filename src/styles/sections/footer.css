@@ -1,0 +1,12 @@
+/* ─── FOOTER ─────────────────────────────── */
+footer {
+  background: var(--navy-dark);
+  border-top: 1px solid rgba(255,255,255,.06);
+  padding: 24px 0;
+}
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-h); font-size: 16px; font-weight: 700; color: rgba(255,255,255,.8); }
+.footer-copy { font-size: 13px; color: rgba(255,255,255,.3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-link { font-size: 13px; color: rgba(255,255,255,.4); font-family: var(--font-h); transition: color .15s; }
+.footer-link:hover { color: var(--green); }

@@ -1,0 +1,53 @@
+---
+const posts = [
+  {
+    date: 'April 2025',
+    tag: 'Automation',
+    title: 'How I Built a Lead Bot in a Weekend with n8n + OpenAI',
+    excerpt: 'Step-by-step walkthrough of building a fully-automated lead qualification bot without writing a single backend line...',
+    delay: 1,
+  },
+  {
+    date: 'March 2025',
+    tag: 'Engineering',
+    title: 'Why I Focus on Architecture Over Syntax',
+    excerpt: 'The shift from junior dev who codes everything manually to an architect who designs systems — and why it changes everything...',
+    delay: 2,
+  },
+  {
+    date: 'Feb 2025',
+    tag: 'AI',
+    title: '[ Add your own article title here ]',
+    excerpt: '[ Short excerpt or intro line that makes someone want to click through and read more. ]',
+    delay: 3,
+  },
+];
+---
+<section id="blog" class="section section-alt">
+  <div class="container">
+    <div class="eyebrow reveal">Articles</div>
+    <h2 class="section-title reveal reveal-delay-1">Insights &amp; writing</h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Thoughts on frontend, automation, and building in the age of AI.
+    </p>
+    <div class="blog-grid">
+      {posts.map(p => (
+        <div class={`blog-card reveal reveal-delay-${p.delay}`}>
+          <div class="blog-thumb">
+            <div class="blog-thumb-pat"></div>
+            <div class="blog-thumb-lbl">Cover image</div>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span class="blog-date">{p.date}</span>
+              <span class="blog-tag">{p.tag}</span>
+            </div>
+            <div class="blog-title">{p.title}</div>
+            <div class="blog-excerpt">{p.excerpt}</div>
+            <a class="blog-read" href="#">Read more →</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

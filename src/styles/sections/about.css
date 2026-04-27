@@ -1,0 +1,36 @@
+/* ─── ABOUT ──────────────────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: 64px; align-items: start;
+}
+.about-photo {
+  aspect-ratio: 3/4; border-radius: 10px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  overflow: hidden; position: relative;
+}
+.about-photo-inner {
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(-45deg, var(--border) 0px, var(--border) 1px, transparent 1px, transparent 10px);
+}
+.about-photo-label {
+  position: relative; z-index: 1;
+  font-size: 12px; color: var(--fg-muted); font-family: var(--font-h);
+  background: var(--bg-card); padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.about-text p { font-size: 17px; color: var(--fg-mid); margin-bottom: 16px; line-height: 1.75; }
+.about-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.chip {
+  font-size: 13px; font-family: var(--font-h); font-weight: 500;
+  padding: 5px 14px; border-radius: 999px;
+  border: 1px solid var(--border-mid); background: var(--bg-card);
+  color: var(--fg-mid);
+}
+
+@media (max-width: 880px) {
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-photo { max-width: 280px; }
+}

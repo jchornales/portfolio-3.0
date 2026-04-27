@@ -1,0 +1,100 @@
+---
+const devicon = (slug: string, file: string) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${slug}/${file}`;
+
+type Skill = { name: string; img?: string; svg?: string; featured?: boolean };
+
+const frontend: Skill[] = [
+  { name: 'React',      img: devicon('react', 'react-original.svg'), featured: true },
+  { name: 'Next.js',    img: devicon('nextjs', 'nextjs-original.svg'), featured: true },
+  { name: 'Vue.js',     img: devicon('vuejs', 'vuejs-original.svg') },
+  { name: 'JavaScript', img: devicon('javascript', 'javascript-original.svg'), featured: true },
+  { name: 'TypeScript', img: devicon('typescript', 'typescript-original.svg') },
+  { name: 'Tailwind',   img: devicon('tailwindcss', 'tailwindcss-original.svg'), featured: true },
+  { name: 'HTML/CSS',   img: devicon('html5', 'html5-original.svg') },
+  { name: 'SCSS',       img: devicon('sass', 'sass-original.svg') },
+  { name: 'Figma',      img: devicon('figma', 'figma-original.svg') },
+];
+
+const backend: Skill[] = [
+  { name: 'Node.js',    img: devicon('nodejs', 'nodejs-original.svg') },
+  { name: 'Express',    img: devicon('express', 'express-original.svg') },
+  { name: 'Supabase',   img: devicon('supabase', 'supabase-original.svg') },
+  { name: 'Firebase',   img: devicon('firebase', 'firebase-original.svg') },
+  { name: 'GraphQL',    img: devicon('graphql', 'graphql-plain.svg') },
+  {
+    name: 'Architecture',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="white"><rect x="2" y="2" width="7" height="7" rx="1"/><rect x="11" y="2" width="7" height="7" rx="1"/><rect x="2" y="11" width="7" height="7" rx="1"/><rect x="11" y="11" width="7" height="7" rx="1"/></svg>',
+    featured: true,
+  },
+  { name: 'PostgreSQL', img: devicon('postgresql', 'postgresql-original.svg') },
+  { name: 'Git',        img: devicon('git', 'git-original.svg') },
+];
+
+const automation: Skill[] = [
+  {
+    name: 'n8n',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="white"><circle cx="10" cy="10" r="3"/><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 14a6 6 0 110-12 6 6 0 010 12z" opacity=".4"/></svg>',
+    featured: true,
+  },
+  {
+    name: 'Zapier',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="white"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm-1 11.4L5.6 10l1.4-1.4 2 2 4.6-4.6 1.4 1.4L9 13.4z"/></svg>',
+    featured: true,
+  },
+  {
+    name: 'Make',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="white"><rect x="2" y="8" width="4" height="4" rx="1"/><rect x="8" y="2" width="4" height="4" rx="1"/><rect x="14" y="8" width="4" height="4" rx="1"/><rect x="8" y="14" width="4" height="4" rx="1"/></svg>',
+    featured: true,
+  },
+  {
+    name: 'OpenAI API',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="white"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm-1 11.4L5.6 10l1.4-1.4 2 2 4.6-4.6 1.4 1.4L9 13.4z"/></svg>',
+    featured: true,
+  },
+  {
+    name: 'Prompt Eng.',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9V9h2v4zm0-6H9V5h2v2z"/></svg>',
+  },
+  {
+    name: 'AI Chatbots',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M3 5h14v2H3zm0 4h10v2H3zm0 4h12v2H3z" opacity=".6"/><circle cx="16" cy="13" r="3"/></svg>',
+  },
+  {
+    name: 'LLM Integration',
+    svg: '<svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M2 10h4v6H2zm6-6h4v12H8zm6 3h4v9h-4z"/></svg>',
+  },
+];
+
+const groups = [
+  { title: 'Frontend',         skills: frontend,   delay: 1 },
+  { title: 'Backend & Infra',  skills: backend,    delay: 2 },
+  { title: 'Automation & AI',  skills: automation, delay: 3 },
+];
+---
+<section id="skills" class="section section-alt">
+  <div class="container">
+    <div class="eyebrow reveal">Skills</div>
+    <h2 class="section-title reveal reveal-delay-1">What's in the toolkit</h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Filled-in = primary expertise. Hover any to explore.
+    </p>
+    <div class="skills-layout">
+      {groups.map(g => (
+        <div class={`reveal reveal-delay-${g.delay}`}>
+          <div class="skill-group-title">{g.title}</div>
+          <div class="skill-tags-wrap">
+            {g.skills.map(s => (
+              <span class={`stk${s.featured ? ' featured' : ''}`}>
+                {s.img
+                  ? <img src={s.img} alt="" loading="lazy" width="18" height="18" />
+                  : <Fragment set:html={s.svg ?? ''} />}
+                {s.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

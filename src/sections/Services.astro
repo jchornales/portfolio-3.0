@@ -1,0 +1,47 @@
+---
+const services = [
+  {
+    icon: '🌐',
+    title: 'Web Design & Development',
+    desc: 'Fast, accessible, production-ready websites and web apps — from landing pages to full-stack products. Built to scale.',
+    tags: ['React', 'Next.js', 'Vue', 'Tailwind', 'Node.js'],
+    delay: 1,
+  },
+  {
+    icon: '⚙️',
+    title: 'Workflow Automation',
+    desc: 'Eliminate repetitive tasks with custom automations. Connect your CRM, email, Slack, and other tools to work as one system.',
+    tags: ['n8n', 'Zapier', 'Make', 'Webhooks'],
+    delay: 2,
+  },
+  {
+    icon: '🤖',
+    title: 'AI Chatbot Integration',
+    desc: 'Add intelligent chatbots to your Facebook, Instagram, or website. Handle inquiries, qualify leads, and support customers 24/7.',
+    tags: ['OpenAI', 'Facebook', 'Instagram', 'LLM'],
+    delay: 3,
+  },
+];
+---
+<section id="services" class="section">
+  <div class="container">
+    <div class="eyebrow reveal">What I Offer</div>
+    <h2 class="section-title reveal reveal-delay-1">Three ways I can help your business</h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Whether you need a fast website, smarter workflows, or an AI assistant for your
+      customers — I've got you.
+    </p>
+    <div class="services-grid">
+      {services.map(s => (
+        <div class={`service-card reveal reveal-delay-${s.delay}`}>
+          <div class="service-icon">{s.icon}</div>
+          <h3>{s.title}</h3>
+          <p>{s.desc}</p>
+          <div class="service-tags">
+            {s.tags.map(t => <span class="stag">{t}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

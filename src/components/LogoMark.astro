@@ -1,0 +1,20 @@
+---
+interface Props {
+  size?: number;
+  variant?: 'default' | 'on-dark';
+  class?: string;
+}
+const { size = 28, variant = 'default', class: className } = Astro.props;
+const navy = variant === 'on-dark' ? 'rgba(255,255,255,.85)' : '#294864';
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 480 480"
+  fill="none"
+  class={className}
+  aria-hidden="true"
+>
+  <path d="M325.68,59.905l75.389,-0l0,360.19l-75.389,-75.389l-0,-284.801Z" fill="#00aa69" />
+  <path d="M250.291,135.294l-134.024,0l-75.389,-75.389l284.801,0l0,128.697l-156.105,156.105l-53.308,-53.308l0,-106.44l75.389,-0l0,31.051l58.635,-58.635l0,-22.081Z" fill={navy} />
+</svg>

@@ -1,0 +1,26 @@
+/* ─── EXPERIENCE ─────────────────────────── */
+.exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 10px; bottom: 10px;
+  width: 2px; background: var(--border-mid); border-radius: 2px;
+}
+.tl-item { position: relative; margin-bottom: 40px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute; left: -28px; top: 8px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--border-mid);
+  transition: border-color .2s;
+}
+.tl-item.current::before { background: var(--green); border-color: var(--green); box-shadow: 0 0 0 4px var(--green-tint); }
+.tl-year {
+  font-size: 12px; font-family: var(--font-h); font-weight: 600;
+  color: var(--green-dark); letter-spacing: 1px; margin-bottom: 4px;
+}
+[data-theme="dark"] .tl-year { color: var(--green); }
+.tl-role { font-family: var(--font-h); font-size: 20px; font-weight: 600; color: var(--fg); }
+.tl-company { font-size: 15px; color: var(--fg-mid); margin-bottom: 8px; }
+.tl-desc { font-size: 15px; color: var(--fg-mid); line-height: 1.65; max-width: 560px; }
+
+@media (max-width: 880px) { .exp-grid { grid-template-columns: 1fr; gap: 32px; } }
