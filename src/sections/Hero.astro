@@ -2,73 +2,29 @@
 ---
 <section id="hero">
   <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="avail-pill reveal">
-          <div class="avail-dot"></div>
-          Available for freelance &amp; part-time
-        </div>
-        <h1 class="hero-name reveal reveal-delay-1">
-          Justine<br /><em>Hornales.</em>
-        </h1>
-        <div class="hero-role reveal reveal-delay-2">
-          <span id="typed"></span>
-        </div>
-        <p class="hero-desc reveal reveal-delay-3">
-          I build systems, not just pages. Frontend-first, architecture-focused,
-          automation-driven — helping businesses ship faster with less manual work.
+    <div class="hero-tag reveal">
+      <span class="avail-dot"></span>
+      Available for freelance &amp; full-time
+    </div>
+    <h1 class="hero-h1 reveal reveal-delay-1">
+      Digital solutions<br />that <em>work.</em>
+    </h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-desc reveal reveal-delay-2">
+          I build websites, automate business workflows, and integrate AI — so your business runs smarter, not harder.
         </p>
-        <div class="hero-ctas reveal reveal-delay-4">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-outline">Let's Talk →</a>
+        <div class="hero-ctas reveal reveal-delay-3">
+          <a href="#projects" class="btn-solid">View Work</a>
+          <a href="#contact" class="btn-ghost">Let's Talk →</a>
         </div>
       </div>
-      <div class="hero-logo-wrap reveal reveal-delay-3">
-        <img
-          class="hero-logo-img"
-          src="/uploads/jh-logo.png"
-          alt="Justine Hornales logo"
-          width="600"
-          height="600"
-        />
+      <div class="hero-services reveal reveal-delay-2">
+        <span class="hero-service active">Web Development</span>
+        <span class="hero-service active">Business Automation</span>
+        <span class="hero-service active">Reservation &amp; Scheduling</span>
+        <span class="hero-service">Philippines · Remote-ready</span>
       </div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>scroll</span>
-  </div>
 </section>
-
-<script>
-  const roles = [
-    'Software Engineer',
-    'Frontend Developer',
-    'Automation Builder',
-    'AI Integration Dev',
-    'Full-Stack Engineer',
-  ];
-  const el = document.getElementById('typed');
-  if (el) {
-    let ri = 0, ci = 0, deleting = false;
-    const tick = () => {
-      const word = roles[ri];
-      if (!deleting) {
-        el.textContent = word.slice(0, ++ci);
-        if (ci === word.length) {
-          deleting = true;
-          setTimeout(tick, 1600);
-          return;
-        }
-      } else {
-        el.textContent = word.slice(0, --ci);
-        if (ci === 0) {
-          deleting = false;
-          ri = (ri + 1) % roles.length;
-        }
-      }
-      setTimeout(tick, deleting ? 45 : 85);
-    };
-    tick();
-  }
-</script>

@@ -1,31 +1,14 @@
 ---
-import LogoMark from './LogoMark.astro';
-
-const links = [
-  { href: '#about',       label: 'About' },
-  { href: '#services',    label: 'Services' },
-  { href: '#projects',    label: 'Work' },
-  { href: '#pricing',     label: 'Pricing' },
-  { href: '#skills',      label: 'Skills' },
-  { href: '#blog',        label: 'Blog' },
-  { href: '#contact',     label: 'Contact' },
-];
 ---
 <nav id="main-nav">
   <div class="container">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
-        <LogoMark size={28} />
-        JH<span class="nav-logo-dot">.</span>
+        <img src="/uploads/Logo-2.1.png" alt="JH" />
+        <span class="nav-name">Justine Hornales</span>
       </a>
-      <div class="nav-links">
-        {links.map(l => (
-          <a class="nav-link" href={l.href}>{l.label}</a>
-        ))}
-      </div>
-      <div class="nav-right">
-        <a href="#contact" class="btn btn-accent btn-sm">Hire Me</a>
-      </div>
+      <a class="nav-pricing" href="#pricing">Pricing</a>
+      <a href="#contact" class="nav-cta">Get in Touch →</a>
     </div>
   </div>
 </nav>

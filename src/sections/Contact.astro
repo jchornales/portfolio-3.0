@@ -1,55 +1,77 @@
 ---
-const contacts = [
-  { icon: '✉',  label: 'Email',    value: 'jchornales.dev@gmail.com' },
-  { icon: 'in', label: 'LinkedIn', value: 'linkedin.com/in/justinehornales' },
-  { icon: 'gh', label: 'GitHub',   value: 'github.com/justinehornales' },
-];
 ---
-<section id="contact" class="section">
+<section id="contact">
   <div class="container">
-    <div class="eyebrow reveal">Contact</div>
-    <h2 class="section-title reveal reveal-delay-1">Let's build something</h2>
-    <p class="section-sub reveal reveal-delay-2">
-      Got a project in mind? A workflow to automate? A chatbot to build? Drop me a
-      message.
-    </p>
-    <div class="contact-grid">
-      <div class="contact-info reveal reveal-delay-1">
-        {contacts.map(c => (
-          <div class="contact-item">
-            <div class="contact-icon">{c.icon}</div>
-            <div>
-              <div class="contact-label">{c.label}</div>
-              <div class="contact-val">{c.value}</div>
+    <div class="section-label reveal">Get in Touch</div>
+    <div class="contact-inner">
+      <div class="contact-left reveal reveal-delay-1">
+        <h2 class="contact-tagline">
+          Have a project<br />in mind? Let's<br /><em>talk.</em>
+        </h2>
+        <p class="contact-meta">
+          Whether you need a website, automation, or a scheduling system — I'd love to hear about it.
+          Reach out and I'll get back to you within 24 hours.
+        </p>
+        <a class="contact-email-link" href="mailto:jchornales.dev@gmail.com">
+          jchornales.dev@gmail.com
+        </a>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" type="email" placeholder="your@email.com" required />
             </div>
           </div>
-        ))}
-        <div class="open-badge reveal reveal-delay-2">
-          <div class="avail-dot"></div>
-          Open to work · Freelance &amp; Part-time
+          <div class="form-group">
+            <label for="cf-service">I need help with</label>
+            <select id="cf-service">
+              <option value="">Select a service…</option>
+              <option>Web Development</option>
+              <option>Business Automation</option>
+              <option>Reservation &amp; Scheduling</option>
+              <option>AI Chatbot Integration</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" placeholder="Tell me about your project…" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">✓</div>
+          <h3>Message sent!</h3>
+          <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
         </div>
       </div>
-      <form class="contact-form reveal reveal-delay-2" onsubmit="return false">
-        <div class="field">
-          <label class="field-label" for="cf-name">Your name</label>
-          <input id="cf-name" class="field-input" type="text" placeholder="John Smith" />
-        </div>
-        <div class="field">
-          <label class="field-label" for="cf-email">Email</label>
-          <input id="cf-email" class="field-input" type="email" placeholder="john@company.com" />
-        </div>
-        <div class="field">
-          <label class="field-label" for="cf-need">What do you need?</label>
-          <input id="cf-need" class="field-input" type="text" placeholder="e.g. Web app, automation, AI chatbot..." />
-        </div>
-        <div class="field">
-          <label class="field-label" for="cf-msg">Message</label>
-          <textarea id="cf-msg" class="field-input" placeholder="Tell me about your project, timeline, and budget..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-accent" style="align-self:flex-start;">
-          Send Message →
-        </button>
-      </form>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('form-success');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name    = (document.getElementById('cf-name')    as HTMLInputElement).value;
+      const email   = (document.getElementById('cf-email')   as HTMLInputElement).value;
+      const service = (document.getElementById('cf-service') as HTMLSelectElement).value;
+      const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value;
+      const subject = encodeURIComponent(`Portfolio Inquiry${service ? ' — ' + service : ''}`);
+      const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`);
+      window.location.href = `mailto:jchornales.dev@gmail.com?subject=${subject}&body=${body}`;
+      setTimeout(() => {
+        form.style.display = 'none';
+        success?.classList.add('show');
+      }, 500);
+    });
+  }
+</script>

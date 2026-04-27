@@ -1,12 +1,26 @@
 /* ─── FOOTER ─────────────────────────────── */
 footer {
-  background: var(--navy-dark);
-  border-top: 1px solid rgba(255,255,255,.06);
-  padding: 24px 0;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
 }
-.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.footer-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-h); font-size: 16px; font-weight: 700; color: rgba(255,255,255,.8); }
-.footer-copy { font-size: 13px; color: rgba(255,255,255,.3); }
-.footer-links { display: flex; gap: 20px; }
-.footer-link { font-size: 13px; color: rgba(255,255,255,.4); font-family: var(--font-h); transition: color .15s; }
-.footer-link:hover { color: var(--green); }
+
+.footer-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+}
+
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-logo img { height: 22px; width: auto; }
+
+.footer-copy {
+  font-size: 13px; color: var(--muted); font-family: var(--font-h);
+}
+
+.footer-links { display: flex; gap: 24px; }
+.footer-link {
+  font-family: var(--font-h); font-size: 13px; font-weight: 500;
+  color: var(--mid);
+  transition: color .2s;
+}
+.footer-link:hover { color: var(--fg); }

@@ -1,40 +1,31 @@
 ---
-const chips = [
-  '📍 Philippines',
-  '🌏 Open to remote',
-  '⚡ Fast turnaround',
-  '🏗️ Architecture-first',
-  '🤖 AI-assisted full-stack',
-];
+const chips = ['Philippines', 'Open to remote', '3+ years exp.', 'Fast turnaround'];
 ---
-<section id="about" class="section section-alt">
+<section id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-photo reveal">
-        <div class="about-photo-inner"></div>
-        <span class="about-photo-label">Profile photo</span>
+    <div class="section-label reveal">About</div>
+    <div class="about-inner">
+      <div>
+        <h2 class="about-h2 reveal reveal-delay-1">
+          Frontend-first.<br />Architecture-focused.<br />Automation-driven.
+        </h2>
       </div>
-      <div class="about-text">
-        <div class="eyebrow reveal">About Me</div>
-        <h2 class="section-title reveal reveal-delay-1">The human behind the builds</h2>
-        <div class="reveal reveal-delay-2">
-          <p>
-            Frontend developer since September 2021, now expanding into full-stack
-            with AI assistance. I focus on <strong>software architecture</strong> —
-            thinking about how systems connect and scale, not just writing features.
-          </p>
-          <p>
-            I help businesses ship faster by pairing clean web development with
-            automation pipelines and AI integrations that eliminate manual work and
-            unlock growth.
-          </p>
-          <p>
-            Looking for <strong>freelance</strong> and <strong>part-time</strong>
-            opportunities — remote-friendly.
-          </p>
-          <div class="about-chips">
-            {chips.map(c => <span class="chip">{c}</span>)}
-          </div>
+      <div class="about-body reveal reveal-delay-2">
+        <p>
+          Frontend developer since September 2021, now expanding into full-stack with AI assistance.
+          I focus on <strong>software architecture</strong> — thinking about how systems connect and scale,
+          not just writing features.
+        </p>
+        <p>
+          I help businesses ship faster by pairing clean web development with automation pipelines and
+          AI integrations that eliminate manual work.
+        </p>
+        <p>
+          Looking for <strong>freelance</strong>, <strong>part-time</strong>, or <strong>full-time</strong>
+          opportunities — remote-friendly.
+        </p>
+        <div class="about-chips">
+          {chips.map((c) => <span class="chip">{c}</span>)}
         </div>
       </div>
     </div>

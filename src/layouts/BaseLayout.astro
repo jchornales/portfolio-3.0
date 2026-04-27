@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import '../styles/sections.css';
 import Nav from '../components/Nav.astro';
-import FabStack from '../components/FabStack.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
@@ -10,12 +9,12 @@ interface Props {
   description?: string;
 }
 const {
-  title = 'Justine Hornales — Software Engineer & Automation Builder',
-  description = 'Frontend developer turned full-stack architect. I build web apps, automation pipelines, and AI chatbot integrations that ship fast and scale.',
+  title = 'Justine Hornales — Developer & Automation Builder',
+  description = 'I build websites, automate business workflows, and integrate AI — so your business runs smarter, not harder.',
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,96 +23,26 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
-    <script is:inline>
-      // Apply theme before paint to avoid flash.
-      (function () {
-        try {
-          var t = localStorage.getItem('jh-theme') || 'light';
-          document.documentElement.setAttribute('data-theme', t);
-        } catch (_) {}
-      })();
-    </script>
   </head>
   <body>
     <Nav />
     <slot />
     <Footer />
-    <FabStack />
 
     <script>
-      // ── THEME ──
-      const root = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      const btn = document.getElementById('theme-toggle-btn');
-      const setIcon = () => {
-        if (icon) icon.textContent = root.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
-      };
-      setIcon();
-      btn?.addEventListener('click', () => {
-        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('jh-theme', next); } catch (_) {}
-        setIcon();
-      });
-
-      // ── FAB MENU (+ toggle) ──
-      const fabStack = document.getElementById('fab-stack');
-      const fabToggle = document.getElementById('fab-toggle-btn');
-      const fabMenu = document.getElementById('fab-menu');
-      const fabActions = fabMenu?.querySelectorAll<HTMLButtonElement>('.fab-action');
-      const setFabOpen = (open: boolean) => {
-        fabStack?.classList.toggle('open', open);
-        fabToggle?.setAttribute('aria-expanded', String(open));
-        fabMenu?.setAttribute('aria-hidden', String(!open));
-        fabToggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-        fabActions?.forEach((a) => a.setAttribute('tabindex', open ? '0' : '-1'));
-      };
-      fabToggle?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setFabOpen(!fabStack?.classList.contains('open'));
-      });
-      document.addEventListener('click', (e) => {
-        if (!fabStack?.contains(e.target as Node)) setFabOpen(false);
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') setFabOpen(false);
-      });
-
-      // ── CHATBOT ──
-      document.getElementById('chatbot-btn')?.addEventListener('click', () => {
-        setFabOpen(false);
-        document.dispatchEvent(new CustomEvent('chatbot:open'));
-      });
-
-      // ── NAV SCROLL + ACTIVE LINK ──
       const mainNav = document.getElementById('main-nav');
-      const scrollTopBtn = document.getElementById('scroll-top-btn');
-      const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
-      const sections = document.querySelectorAll<HTMLElement>('section[id]');
+      window.addEventListener(
+        'scroll',
+        () => {
+          mainNav?.classList.toggle('scrolled', window.scrollY > 20);
+        },
+        { passive: true },
+      );
 
-      window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        scrollTopBtn?.classList.toggle('visible', y > 400);
-        mainNav?.classList.toggle('scrolled', y > 20);
-
-        let current = '';
-        sections.forEach((s) => {
-          if (y >= s.offsetTop - 90) current = s.id;
-        });
-        navLinks.forEach((l) => {
-          l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-        });
-      }, { passive: true });
-
-      scrollTopBtn?.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      // ── REVEAL ON SCROLL ──
       const revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {

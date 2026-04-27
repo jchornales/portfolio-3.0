@@ -1,123 +1,54 @@
 ---
-const filters = [
-  { id: 'all',        label: 'All' },
-  { id: 'web',        label: 'Web Dev' },
-  { id: 'automation', label: 'Automation' },
-  { id: 'ai',         label: 'AI Chatbot' },
-];
-
 const projects = [
   {
-    cat: 'web',
-    catLabel: 'Web Development',
+    cat: 'Web Development',
     title: '[ Project Name ]',
-    desc: 'Short description of what this project does and the problem it solved for the client.',
-    thumb: 'Project screenshot',
-    tags: ['React', 'Next.js', 'Supabase'],
+    desc: 'Fast, production-ready website built for a growing business client.',
+    label: 'Project screenshot',
     delay: 1,
   },
   {
-    cat: 'automation',
-    catLabel: 'Automation',
+    cat: 'Automation',
     title: 'CRM → Slack Pipeline',
-    desc: 'n8n workflow that connects CRM, Slack, and email — routing leads to the right team, saving 10 hours per week.',
-    thumb: 'Workflow screenshot',
-    tags: ['n8n', 'Make', 'API'],
+    desc: 'n8n workflow connecting CRM, email and Slack — saving 10 hrs/week.',
+    label: 'Automation flow',
     delay: 2,
   },
   {
-    cat: 'ai',
-    catLabel: 'AI Chatbot',
+    cat: 'AI Chatbot',
     title: 'Facebook Lead Bot',
-    desc: 'Messenger bot that qualifies leads, answers FAQs, and books discovery calls — fully automated, zero human effort.',
-    thumb: 'Chatbot demo',
-    tags: ['OpenAI', 'Messenger', 'n8n'],
-    delay: 3,
-  },
-  {
-    cat: 'web',
-    catLabel: 'Web Development',
-    title: '[ Project Name ]',
-    desc: 'Another web project — replace with your real work, screenshots, and results.',
-    thumb: 'Project screenshot',
-    tags: ['Vue', 'Tailwind', 'Firebase'],
+    desc: 'Messenger bot that qualifies leads, answers FAQs, and books calls automatically.',
+    label: 'Chatbot demo',
     delay: 1,
   },
   {
-    cat: 'automation',
-    catLabel: 'Automation',
-    title: '[ Automation Project ]',
-    desc: 'Replace with a real automation project. What did you connect? What time did it save?',
-    thumb: 'Automation flow',
-    tags: ['Zapier', 'Webhook'],
+    cat: 'Reservation & Scheduling',
+    title: '[ Booking System ]',
+    desc: 'Custom reservation system with calendar sync and automated reminders.',
+    label: 'Scheduling system',
     delay: 2,
-  },
-  {
-    cat: 'ai',
-    catLabel: 'AI Chatbot',
-    title: '[ AI Project ]',
-    desc: 'Replace with a real AI chatbot project. What platform? What does it do for the client?',
-    thumb: 'AI integration',
-    tags: ['OpenAI', 'Instagram'],
-    delay: 3,
   },
 ];
 ---
-<section id="projects" class="section">
+<section id="projects">
   <div class="container">
-    <div class="eyebrow reveal">Selected Work</div>
-    <h2 class="section-title reveal reveal-delay-1">Projects I'm proud of</h2>
-    <p class="section-sub reveal reveal-delay-2">
-      Real work, real results. Filtered by service type.
-    </p>
-
-    <div class="filter-row reveal reveal-delay-3">
-      {filters.map((f, i) => (
-        <button
-          class={`filter-btn${i === 0 ? ' active' : ''}`}
-          data-filter={f.id}
-          type="button"
-        >{f.label}</button>
-      ))}
-    </div>
-
+    <div class="section-label reveal">Selected Work</div>
     <div class="projects-grid">
-      {projects.map(p => (
-        <div class={`project-card reveal reveal-delay-${p.delay}`} data-cat={p.cat}>
+      {projects.map((p) => (
+        <div class={`project-item reveal reveal-delay-${p.delay}`}>
           <div class="project-thumb">
-            <div class="project-thumb-pattern"></div>
-            <div class="project-thumb-label">{p.thumb}</div>
+            <span class="project-thumb-label">{p.label}</span>
           </div>
-          <div class="project-body">
-            <div class="project-cat">{p.catLabel}</div>
-            <div class="project-title">{p.title}</div>
-            <div class="project-desc">{p.desc}</div>
-          </div>
-          <div class="project-foot">
-            <div class="project-tags">
-              {p.tags.map(t => <span class="ptag">{t}</span>)}
+          <div class="project-meta">
+            <div>
+              <div class="project-cat">{p.cat}</div>
+              <div class="project-title">{p.title}</div>
+              <div class="project-desc">{p.desc}</div>
             </div>
-            <a class="project-link" href="#">View →</a>
+            <span class="project-arrow">↗</span>
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
-
-<script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  const cards = document.querySelectorAll<HTMLElement>('.project-card');
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        const cat = card.dataset.cat;
-        const show = filter === 'all' || cat === filter;
-        card.classList.toggle('hidden', !show);
-      });
-    });
-  });
-</script>

@@ -1,5 +1,4 @@
 /* ─── RESPONSIVE ─────────────────────────── */
-@media (max-width: 880px) {
-  .section { padding: 72px 0; }
+@media (max-width: 768px) {
   .container { padding: 0 24px; }
 }

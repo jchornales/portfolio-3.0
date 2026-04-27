@@ -1,13 +1,9 @@
 @import './sections/nav.css';
-@import './sections/fab.css';
 @import './sections/hero.css';
-@import './sections/about.css';
-@import './sections/services.css';
-@import './sections/experience.css';
 @import './sections/projects.css';
+@import './sections/services.css';
+@import './sections/about.css';
 @import './sections/skills.css';
 @import './sections/pricing.css';
-@import './sections/testimonials.css';
-@import './sections/blog.css';
 @import './sections/contact.css';
 @import './sections/footer.css';

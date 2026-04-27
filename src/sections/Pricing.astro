@@ -1,149 +1,94 @@
 ---
-import PriceCard from '../components/PriceCard.astro';
-
-const web = [
+const tiers = [
   {
-    tier: 'Starter', name: 'Landing Page',
-    desc: 'Perfect for businesses that need a fast, professional online presence.',
-    amount: '299', period: '/ project',
-    note: 'One-time payment · Delivered in 5–7 days',
+    tier: 'Starter',
+    name: 'Landing Page',
+    desc: 'A fast, professional online presence for businesses getting started.',
+    currency: '$',
+    amount: '299',
+    period: '/ project',
+    note: 'One-time · Delivered in 5–7 days',
     features: [
-      { text: 'Up to 5 sections' },
-      { text: 'Mobile responsive' },
-      { text: 'Contact form' },
-      { text: 'Basic SEO setup' },
-      { text: 'CMS / blog', included: false },
-      { text: 'Custom animations', included: false },
-      { text: 'Backend / database', included: false },
+      { label: 'Up to 5 sections',  dim: false },
+      { label: 'Mobile responsive', dim: false },
+      { label: 'Contact form',      dim: false },
+      { label: 'Basic SEO setup',   dim: false },
+      { label: 'CMS / blog',        dim: true  },
+      { label: 'Backend / database',dim: true  },
     ],
-    cta: 'Get a Quote', ctaStyle: 'outline' as const, delay: 1,
+    cta: 'Get a Quote',
+    featured: false,
+    delay: 1,
   },
   {
-    tier: 'Growth', name: 'Full Website',
-    desc: 'Multi-page website with CMS, blog, and custom design for growing businesses.',
-    amount: '799', period: '/ project',
-    note: 'One-time payment · Delivered in 2–3 weeks',
+    tier: 'Growth',
+    name: 'Full Website',
+    desc: 'Multi-page site with CMS and custom design for growing businesses.',
+    currency: '$',
+    amount: '799',
+    period: '/ project',
+    note: 'One-time · Delivered in 2–3 weeks',
     features: [
-      { text: 'Up to 10 pages' },
-      { text: 'Mobile responsive' },
-      { text: 'CMS integration' },
-      { text: 'Blog / portfolio' },
-      { text: 'Custom animations' },
-      { text: 'SEO + analytics setup' },
-      { text: 'Backend / database', included: false },
+      { label: 'Up to 10 pages',     dim: false },
+      { label: 'Mobile responsive',  dim: false },
+      { label: 'CMS integration',    dim: false },
+      { label: 'Blog / portfolio',   dim: false },
+      { label: 'Custom animations',  dim: false },
+      { label: 'SEO + analytics',    dim: false },
     ],
-    cta: 'Get a Quote', ctaStyle: 'accent' as const,
-    featured: true, badge: 'Most Popular', delay: 2,
+    cta: 'Get a Quote',
+    featured: true,
+    delay: 2,
   },
   {
-    tier: 'Custom', name: 'Web App',
-    desc: 'Full-stack web application with database, auth, dashboards, and custom logic.',
-    amount: '1,500', period: '+',
-    note: 'Custom quote · Timeline varies by scope',
+    tier: 'Custom',
+    name: 'Web App',
+    desc: 'Full-stack application with database, auth, dashboards, and custom logic.',
+    currency: '$',
+    amount: '1,500',
+    period: '+ / project',
+    note: 'Custom quote · Timeline by scope',
     features: [
-      { text: 'Full-stack (React / Next.js)' },
-      { text: 'Database & auth (Supabase)' },
-      { text: 'Admin dashboard' },
-      { text: 'API integrations' },
-      { text: 'Custom architecture' },
-      { text: 'Deployment & hosting setup' },
-      { text: '30-day post-launch support' },
+      { label: 'React / Next.js full-stack', dim: false },
+      { label: 'Database & auth (Supabase)', dim: false },
+      { label: 'Admin dashboard',            dim: false },
+      { label: 'API integrations',           dim: false },
+      { label: 'Deployment & hosting',       dim: false },
+      { label: '30-day support',             dim: false },
     ],
-    cta: "Let's Talk", ctaStyle: 'primary' as const, delay: 3,
-  },
-];
-
-const auto = [
-  {
-    tier: 'Starter', name: 'Simple Automation',
-    desc: 'One workflow connecting 2–3 tools. Perfect for first-time automation clients.',
-    amount: '149', period: '/ workflow',
-    note: 'One-time · Delivered in 3–5 days',
-    features: [
-      { text: '1 workflow (up to 3 steps)' },
-      { text: 'n8n, Zapier, or Make' },
-      { text: 'Walkthrough & documentation' },
-      { text: 'AI / chatbot integration', included: false },
-      { text: 'Multi-branch logic', included: false },
-      { text: 'Ongoing maintenance', included: false },
-    ],
-    cta: 'Get a Quote', ctaStyle: 'outline' as const, delay: 1,
-  },
-  {
-    tier: 'Growth', name: 'AI Chatbot',
-    desc: 'Intelligent chatbot for Facebook, Instagram, or website. Handles leads & FAQs 24/7.',
-    amount: '499', period: '/ project',
-    note: 'One-time setup · + optional monthly retainer',
-    features: [
-      { text: 'Facebook / Instagram / Web' },
-      { text: 'OpenAI / LLM powered' },
-      { text: 'Lead qualification flow' },
-      { text: 'FAQ auto-responses' },
-      { text: 'Appointment booking' },
-      { text: 'Training on your content' },
-      { text: 'CRM sync', included: false },
-    ],
-    cta: 'Get a Quote', ctaStyle: 'accent' as const,
-    featured: true, badge: 'Most Popular', delay: 2,
-  },
-  {
-    tier: 'Custom', name: 'Full Automation Suite',
-    desc: 'Complex multi-workflow system with AI chatbot, CRM sync, reporting, and ongoing support.',
-    amount: '999', period: '+',
-    note: 'Custom quote · Retainer available',
-    features: [
-      { text: 'Multiple workflows' },
-      { text: 'AI chatbot included' },
-      { text: 'CRM / Sheets integration' },
-      { text: 'Multi-branch logic' },
-      { text: 'Custom reporting' },
-      { text: 'Full documentation' },
-      { text: 'Monthly maintenance option' },
-    ],
-    cta: "Let's Talk", ctaStyle: 'primary' as const, delay: 3,
+    cta: "Let's Talk",
+    featured: false,
+    delay: 3,
   },
 ];
 ---
-<section id="pricing" class="section section-alt">
+<section id="pricing">
   <div class="container">
-    <div class="eyebrow reveal">Pricing</div>
-    <h2 class="section-title reveal reveal-delay-1">Transparent, custom pricing</h2>
-    <p class="section-sub reveal reveal-delay-2">
-      Every project is different. These are starting points — I'll always give you
-      a custom quote based on your needs.
-    </p>
-
-    <div class="pricing-tabs reveal reveal-delay-3">
-      <button class="pricing-tab active" data-target="pricing-web" type="button">🌐 Web Design &amp; Dev</button>
-      <button class="pricing-tab" data-target="pricing-auto" type="button">⚙️ Automation</button>
-    </div>
-
-    <div class="pricing-panel active" id="pricing-web">
-      {web.map(p => <PriceCard {...p} />)}
-    </div>
-
-    <div class="pricing-panel" id="pricing-auto">
-      {auto.map(p => <PriceCard {...p} />)}
-    </div>
-
-    <div class="pricing-note reveal">
-      💡 Not sure which plan fits? <a href="#contact">Send me a message</a> — I'll
-      put together a custom quote based on exactly what you need. No pressure, no
-      sales pitch.
+    <div class="section-label reveal">Pricing</div>
+    <div class="pricing-grid">
+      {tiers.map((t) => (
+        <div class={`price-card${t.featured ? ' featured' : ''} reveal reveal-delay-${t.delay}`}>
+          {t.featured && <div class="price-badge">Most Popular</div>}
+          <div class="price-tier">{t.tier}</div>
+          <div class="price-name">{t.name}</div>
+          <div class="price-desc">{t.desc}</div>
+          <div class="price-amount">
+            <span class="price-currency">{t.currency}</span>
+            <span class="price-num">{t.amount}</span>
+          </div>
+          <div class="price-period">{t.period}</div>
+          <div class="price-note">{t.note}</div>
+          <div class="price-divider"></div>
+          <div class="price-features">
+            {t.features.map((f) => (
+              <div class={`price-feature${f.dim ? ' dim' : ''}`}>
+                <div class="pf-dot"></div>{f.label}
+              </div>
+            ))}
+          </div>
+          <a class="price-cta-btn" href="#contact">{t.cta}</a>
+        </div>
+      ))}
     </div>
   </div>
 </section>
-
-<script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.pricing-tab');
-  const panels = document.querySelectorAll<HTMLElement>('.pricing-panel');
-  tabs.forEach(t => {
-    t.addEventListener('click', () => {
-      tabs.forEach(b => b.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      t.classList.add('active');
-      const target = t.dataset.target;
-      if (target) document.getElementById(target)?.classList.add('active');
-    });
-  });
-</script>
