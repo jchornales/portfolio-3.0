@@ -1,11 +1,12 @@
 ---
-const tiers = [
+const webTiers = [
   {
     tier: "Starter",
     name: "Landing Page",
-    desc: "The fastest path to a professional online presence. Perfect for local businesses and freelancers who need to be found.",
+    desc: "A sharp, mobile-ready landing page that makes your business look the part. Fast to ship, built to convert.",
     currency: "$",
     amount: "299",
+    originalAmount: "399",
     period: "/ project",
     note: "One-time · Delivered in 5–7 days",
     features: [
@@ -23,9 +24,10 @@ const tiers = [
   {
     tier: "Growth",
     name: "Full Website",
-    desc: "A complete website with content management — for businesses ready to publish, rank, and grow.",
+    desc: "A full website with CMS — publish content, rank on search, and manage pages without touching code.",
     currency: "$",
     amount: "799",
+    originalAmount: "999",
     period: "/ project",
     note: "One-time · Delivered in 2–3 weeks",
     features: [
@@ -43,9 +45,10 @@ const tiers = [
   {
     tier: "Custom",
     name: "Web App",
-    desc: "A real web application. Built for businesses that have outgrown templates and spreadsheets.",
+    desc: "A real web application: auth, database, dashboards, and custom logic. Built for businesses that have outgrown templates.",
     currency: "$",
     amount: "1,500",
+    originalAmount: null,
     period: "+ / project",
     note: "Custom quote · Timeline by scope",
     features: [
@@ -61,40 +64,236 @@ const tiers = [
     delay: 3,
   },
 ];
+
+const automationTiers = [
+  {
+    tier: "Starter",
+    name: "Quick Win",
+    desc: "One workflow, one problem eliminated. I build and test a single automation that removes a repetitive task from your plate — permanently.",
+    currency: "$",
+    amount: "199",
+    originalAmount: "249",
+    period: "/ project",
+    note: "One-time · Delivered in 3–5 days",
+    features: [
+      { label: "1 automated workflow (n8n, Zapier, or Make)", dim: false },
+      { label: "Connects up to 3 apps", dim: false },
+      { label: "Error alerts via email", dim: false },
+      { label: "Fully documented workflow", dim: false },
+      { label: "14-day bug fix support", dim: false },
+      { label: "Ongoing maintenance", dim: true },
+    ],
+    cta: "Get a Quote",
+    featured: false,
+    delay: 1,
+  },
+  {
+    tier: "Growth",
+    name: "Workflow Stack",
+    desc: "Up to 5 connected workflows replacing the manual glue between your tools. CRM, inbox, and Slack start talking to each other automatically.",
+    currency: "$",
+    amount: "599",
+    originalAmount: "799",
+    period: "/ project",
+    note: "One-time · Delivered in 1–2 weeks",
+    features: [
+      { label: "Up to 5 automated workflows", dim: false },
+      { label: "n8n or Make — your stack, your choice", dim: false },
+      { label: "CRM, Slack, email & calendar integrations", dim: false },
+      { label: "Error monitoring + auto-restart logic", dim: false },
+      { label: "Handover documentation + walkthrough", dim: false },
+      { label: "30-day support", dim: false },
+    ],
+    cta: "Get a Quote",
+    featured: true,
+    delay: 2,
+  },
+  {
+    tier: "Custom",
+    name: "AI Pipeline",
+    desc: "Full automation architecture with AI at the center — lead bots, data pipelines, real-time triggers. Retainer option available.",
+    currency: "$",
+    amount: "1,200",
+    originalAmount: null,
+    period: "+ / project",
+    note: "Custom quote · Retainer available",
+    features: [
+      { label: "Unlimited workflows & pipeline architecture", dim: false },
+      { label: "OpenAI integration (chatbots, data processing)", dim: false },
+      { label: "Webhook-driven real-time triggers", dim: false },
+      { label: "Lead qualification or intake automation", dim: false },
+      { label: "Monthly retainer option available", dim: false },
+      { label: "Priority support + ongoing iterations", dim: false },
+    ],
+    cta: "Book a Call",
+    featured: false,
+    delay: 3,
+  },
+];
 ---
 
 <section id="pricing">
   <div class="container">
     <div class="section-label reveal">Pricing</div>
-    <div class="pricing-grid">
-      {
-        tiers.map((t) => (
-          <div class={`price-card${t.featured ? " featured" : ""} reveal reveal-delay-${t.delay}`}>
-            {t.featured && <div class="price-badge">Most Popular</div>}
-            <div class="price-tier">{t.tier}</div>
-            <div class="price-name">{t.name}</div>
-            <div class="price-desc">{t.desc}</div>
-            <div class="price-amount">
-              <span class="price-currency">{t.currency}</span>
-              <span class="price-num">{t.amount}</span>
-            </div>
-            <div class="price-period">{t.period}</div>
-            <div class="price-note">{t.note}</div>
-            <div class="price-divider" />
-            <div class="price-features">
-              {t.features.map((f) => (
-                <div class={`price-feature${f.dim ? " dim" : ""}`}>
-                  <div class="pf-dot" />
-                  {f.label}
+
+    <div class="pricing-tabs reveal reveal-delay-1" role="tablist" aria-label="Pricing categories">
+      <button
+        class="pricing-tab-btn active"
+        role="tab"
+        data-tab="web"
+        aria-selected="true"
+        aria-controls="tab-panel-web"
+        id="tab-btn-web"
+      >
+        Web Development
+      </button>
+      <button
+        class="pricing-tab-btn"
+        role="tab"
+        data-tab="automation"
+        aria-selected="false"
+        aria-controls="tab-panel-automation"
+        id="tab-btn-automation"
+        tabindex="-1"
+      >
+        Automation
+      </button>
+    </div>
+
+    <!-- Web Development panel -->
+    <div
+      class="pricing-tab-panel active"
+      id="tab-panel-web"
+      role="tabpanel"
+      aria-labelledby="tab-btn-web"
+    >
+      <div class="pricing-grid">
+        {
+          webTiers.map((t) => (
+            <div class={`price-card${t.featured ? " featured" : ""} reveal reveal-delay-${t.delay}`}>
+              {t.featured && <div class="price-badge">Most Popular</div>}
+              <div class="price-tier">{t.tier}</div>
+              <div class="price-name">{t.name}</div>
+              <div class="price-desc">{t.desc}</div>
+              <div class="price-amount">
+                <div class="price-amount-row">
+                  <span class="price-currency">{t.currency}</span>
+                  <span class="price-num">{t.amount}</span>
+                  {t.originalAmount && (
+                    <span class="price-was">{t.currency}{t.originalAmount}</span>
+                  )}
                 </div>
-              ))}
+              </div>
+              <div class="price-period">{t.period}</div>
+              <div class="price-note">{t.note}</div>
+              <div class="price-divider" />
+              <div class="price-features">
+                {t.features.map((f) => (
+                  <div class={`price-feature${f.dim ? " dim" : ""}`}>
+                    <div class="pf-dot" />
+                    {f.label}
+                  </div>
+                ))}
+              </div>
+              <a class="price-cta-btn" href="#contact">
+                {t.cta}
+              </a>
             </div>
-            <a class="price-cta-btn" href="#contact">
-              {t.cta}
-            </a>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Automation panel -->
+    <div
+      class="pricing-tab-panel"
+      id="tab-panel-automation"
+      role="tabpanel"
+      aria-labelledby="tab-btn-automation"
+      hidden
+    >
+      <div class="pricing-grid automation-grid">
+        {
+          automationTiers.map((t) => (
+            <div class={`price-card${t.featured ? " featured" : ""} reveal reveal-delay-${t.delay}`}>
+              {t.featured && <div class="price-badge">Most Popular</div>}
+              <div class="price-tier">{t.tier}</div>
+              <div class="price-name">{t.name}</div>
+              <div class="price-desc">{t.desc}</div>
+              <div class="price-amount">
+                <div class="price-amount-row">
+                  <span class="price-currency">{t.currency}</span>
+                  <span class="price-num">{t.amount}</span>
+                  {t.originalAmount && (
+                    <span class="price-was">{t.currency}{t.originalAmount}</span>
+                  )}
+                </div>
+              </div>
+              <div class="price-period">{t.period}</div>
+              <div class="price-note">{t.note}</div>
+              <div class="price-divider" />
+              <div class="price-features">
+                {t.features.map((f) => (
+                  <div class={`price-feature${f.dim ? " dim" : ""}`}>
+                    <div class="pf-dot" />
+                    {f.label}
+                  </div>
+                ))}
+              </div>
+              <a class="price-cta-btn" href="#contact">
+                {t.cta}
+              </a>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".pricing-tab-btn");
+  const panels = document.querySelectorAll<HTMLElement>(".pricing-tab-panel");
+
+  function activateTab(btn: HTMLButtonElement) {
+    const target = btn.dataset.tab;
+
+    tabs.forEach((t) => {
+      const isActive = t.dataset.tab === target;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    panels.forEach((p) => {
+      const isActive = p.id === `tab-panel-${target}`;
+      p.classList.toggle("active", isActive);
+      if (isActive) {
+        p.removeAttribute("hidden");
+      } else {
+        p.setAttribute("hidden", "");
+      }
+    });
+  }
+
+  tabs.forEach((btn) => {
+    btn.addEventListener("click", () => activateTab(btn));
+
+    btn.addEventListener("keydown", (e) => {
+      const list = [...tabs];
+      const idx = list.indexOf(btn);
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        const next = list[(idx + 1) % list.length];
+        next.focus();
+        activateTab(next);
+      }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        const prev = list[(idx - 1 + list.length) % list.length];
+        prev.focus();
+        activateTab(prev);
+      }
+    });
+  });
+</script>
