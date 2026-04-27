@@ -1,20 +1,21 @@
 ---
-import '../styles/global.css';
-import '../styles/sections.css';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import FloatingMenu from '../components/FloatingMenu.astro';
-import AiChat from '../components/AiChat.astro';
+import "../styles/global.css";
+import "../styles/sections.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import FloatingMenu from "../components/FloatingMenu.astro";
+import AiChat from "../components/AiChat.astro";
 
 interface Props {
   title?: string;
   description?: string;
 }
 const {
-  title = 'Justine Hornales — Developer & Automation Builder',
-  description = 'I build websites, automate business workflows, and integrate AI — so your business runs smarter, not harder.',
+  title = "Justine Hornales — Developer & Automation Builder",
+  description = "I build websites, automate business workflows, and integrate AI — so your business runs smarter, not harder.",
 } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,9 +33,11 @@ const {
     <!-- Inline theme init: runs before paint to prevent flash of wrong theme -->
     <script is:inline>
       (function () {
-        var saved = localStorage.getItem('theme');
-        var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', saved || preferred);
+        const saved = localStorage.getItem("theme");
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        document.documentElement.setAttribute("data-theme", saved || preferred);
       })();
     </script>
   </head>
@@ -46,11 +49,11 @@ const {
     <AiChat />
 
     <script>
-      const mainNav = document.getElementById('main-nav');
+      const mainNav = document.getElementById("main-nav");
       window.addEventListener(
-        'scroll',
+        "scroll",
         () => {
-          mainNav?.classList.toggle('scrolled', window.scrollY > 20);
+          mainNav?.classList.toggle("scrolled", window.scrollY > 20);
         },
         { passive: true },
       );
@@ -59,14 +62,14 @@ const {
         (entries) => {
           entries.forEach((e) => {
             if (e.isIntersecting) {
-              e.target.classList.add('visible');
+              e.target.classList.add("visible");
               revealObserver.unobserve(e.target);
             }
           });
         },
         { threshold: 0.12 },
       );
-      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
     </script>
   </body>
 </html>

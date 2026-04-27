@@ -2,7 +2,8 @@
 #hero {
   padding: 180px 0 120px;
   min-height: 100vh;
-  display: flex; align-items: center;
+  display: flex;
+  align-items: center;
   position: relative;
 }
 
@@ -23,12 +24,12 @@
   background-size: 48px 48px;
   transform: rotate(-5deg);
   mask-image:
-    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0,0,0,0.5) 45%, transparent 75%),
-    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0,0,0,0.35) 0%, transparent 65%);
+    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0, 0, 0, 0.5) 45%, transparent 75%),
+    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0, 0, 0, 0.35) 0%, transparent 65%);
   mask-composite: add;
   -webkit-mask-image:
-    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0,0,0,0.5) 45%, transparent 75%),
-    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0,0,0,0.35) 0%, transparent 65%);
+    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0, 0, 0, 0.5) 45%, transparent 75%),
+    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0, 0, 0, 0.35) 0%, transparent 65%);
   -webkit-mask-composite: source-over;
 }
 
@@ -49,51 +50,104 @@
 }
 
 .hero-tag {
-  font-family: var(--font-h); font-size: 12px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 16px; margin-bottom: 40px;
+  font-family: var(--font-h);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
 }
 .hero-tag::before {
-  content: ''; width: 32px; height: 1px; background: var(--green);
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--green);
 }
 
 .avail-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--green);
-  animation: pulse 2s ease-in-out infinite; display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+  display: inline-block;
 }
-@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
 
 .hero-h1 {
   font-family: var(--font-h);
   font-size: clamp(52px, 7.5vw, 104px);
-  font-weight: 700; letter-spacing: -3px; line-height: .95;
-  color: var(--fg); margin-bottom: 48px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 0.95;
+  color: var(--fg);
+  margin-bottom: 48px;
   max-width: 900px;
 }
-.hero-h1 em { color: var(--green); font-style: normal; }
+.hero-h1 em {
+  color: var(--green);
+  font-style: normal;
+}
 
 .hero-bottom {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 48px; flex-wrap: wrap;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
 }
 
 .hero-desc {
-  font-size: 18px; color: var(--mid); max-width: 420px; line-height: 1.65;
+  font-size: 18px;
+  color: var(--mid);
+  max-width: 420px;
+  line-height: 1.65;
 }
 
 .hero-services {
-  display: flex; flex-direction: column; gap: 6px; text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
 }
 .hero-service {
-  font-family: var(--font-h); font-size: 13px; font-weight: 500;
-  color: var(--muted); letter-spacing: .5px;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
 }
-.hero-service.active { color: var(--fg); }
+.hero-service.active {
+  color: var(--fg);
+}
 
-.hero-ctas { display: flex; gap: 12px; margin-top: 40px; }
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
 
 @media (max-width: 768px) {
-  .hero-bottom { flex-direction: column; align-items: flex-start; }
-  .hero-services { text-align: left; }
-  .hero-h1 { letter-spacing: -2px; }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-services {
+    text-align: left;
+  }
+  .hero-h1 {
+    letter-spacing: -2px;
+  }
 }

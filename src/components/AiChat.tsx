@@ -136,14 +136,21 @@ export default function AiChat() {
 
     await new Promise<void>((r) => setTimeout(r, 900 + Math.random() * 700));
 
-    setMessages((prev) => [...prev, { id: uid(), from: "bot", text: getBotResponse(text), time: timeNow() }]);
+    setMessages((prev) => [
+      ...prev,
+      { id: uid(), from: "bot", text: getBotResponse(text), time: timeNow() },
+    ]);
     requestAnimationFrame(() => setFocus("message"));
   };
 
   return (
     <>
       {/* Backdrop */}
-      <div className={`aichat-backdrop${isOpen ? " open" : ""}`} aria-hidden="true" onClick={closeChat} />
+      <div
+        className={`aichat-backdrop${isOpen ? " open" : ""}`}
+        aria-hidden="true"
+        onClick={closeChat}
+      />
 
       {/* Panel */}
       <div

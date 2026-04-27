@@ -1,33 +1,32 @@
 ---
 const skills = [
-  { name: 'React',               primary: true },
-  { name: 'Next.js',             primary: true },
-  { name: 'Tailwind CSS',        primary: true },
-  { name: 'JavaScript',          primary: true },
-  { name: 'TypeScript',          primary: false },
-  { name: 'Vue.js',              primary: false },
-  { name: 'HTML / CSS',          primary: false },
-  { name: 'Node.js',             primary: false },
-  { name: 'Supabase',            primary: false },
-  { name: 'Firebase',            primary: false },
-  { name: 'n8n',                 primary: true },
-  { name: 'Zapier',              primary: true },
-  { name: 'Make',                primary: true },
-  { name: 'OpenAI API',          primary: true },
-  { name: 'AI Chatbots',         primary: false },
-  { name: 'Prompt Engineering',  primary: false },
-  { name: 'Figma',               primary: false },
-  { name: 'Git',                 primary: false },
-  { name: 'PostgreSQL',          primary: false },
+  { name: "React", primary: true },
+  { name: "Next.js", primary: true },
+  { name: "Tailwind CSS", primary: true },
+  { name: "JavaScript", primary: true },
+  { name: "TypeScript", primary: false },
+  { name: "Vue.js", primary: false },
+  { name: "HTML / CSS", primary: false },
+  { name: "Node.js", primary: false },
+  { name: "Supabase", primary: false },
+  { name: "Firebase", primary: false },
+  { name: "n8n", primary: true },
+  { name: "Zapier", primary: true },
+  { name: "Make", primary: true },
+  { name: "OpenAI API", primary: true },
+  { name: "AI Chatbots", primary: false },
+  { name: "Prompt Engineering", primary: false },
+  { name: "Figma", primary: false },
+  { name: "Git", primary: false },
+  { name: "PostgreSQL", primary: false },
 ];
 ---
+
 <section id="skills">
   <div class="container">
     <div class="section-label reveal">Skills</div>
     <div class="skills-wrap reveal reveal-delay-1">
-      {skills.map((s) => (
-        <span class={`skill-pill${s.primary ? ' primary' : ''}`}>{s.name}</span>
-      ))}
+      {skills.map((s) => <span class={`skill-pill${s.primary ? " primary" : ""}`}>{s.name}</span>)}
     </div>
   </div>
 </section>

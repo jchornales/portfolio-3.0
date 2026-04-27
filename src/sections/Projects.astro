@@ -1,54 +1,62 @@
 ---
 const projects = [
   {
-    cat: 'Web Development',
-    title: '[ Project Name ]',
-    desc: 'Fast, production-ready website built for a growing business client.',
-    label: 'Project screenshot',
+    cat: "Web Development",
+    title: "Rake Engineering Consultancy Website",
+    desc: "Fast, production-ready website built for a growing business client.",
+    label: "Project screenshot",
+    image: "/uploads/rake-homepage.png",
     delay: 1,
   },
   {
-    cat: 'Automation',
-    title: 'CRM → Slack Pipeline',
-    desc: 'n8n workflow connecting CRM, email and Slack — saving 10 hrs/week.',
-    label: 'Automation flow',
+    cat: "Automation",
+    title: "CRM → Slack Pipeline",
+    desc: "n8n workflow connecting CRM, email and Slack — saving 10 hrs/week.",
+    label: "Automation flow",
     delay: 2,
   },
   {
-    cat: 'AI Chatbot',
-    title: 'Facebook Lead Bot',
-    desc: 'Messenger bot that qualifies leads, answers FAQs, and books calls automatically.',
-    label: 'Chatbot demo',
+    cat: "AI Chatbot",
+    title: "Facebook Lead Bot",
+    desc: "Messenger bot that qualifies leads, answers FAQs, and books calls automatically.",
+    label: "Chatbot demo",
     delay: 1,
   },
   {
-    cat: 'Reservation & Scheduling',
-    title: '[ Booking System ]',
-    desc: 'Custom reservation system with calendar sync and automated reminders.',
-    label: 'Scheduling system',
+    cat: "Reservation & Scheduling",
+    title: "Custom Booking System",
+    desc: "Custom reservation system with calendar sync and automated reminders.",
+    label: "Scheduling system",
     delay: 2,
   },
 ];
 ---
+
 <section id="projects">
   <div class="container">
     <div class="section-label reveal">Selected Work</div>
     <div class="projects-grid">
-      {projects.map((p) => (
-        <div class={`project-item reveal reveal-delay-${p.delay}`}>
-          <div class="project-thumb">
-            <span class="project-thumb-label">{p.label}</span>
-          </div>
-          <div class="project-meta">
-            <div>
-              <div class="project-cat">{p.cat}</div>
-              <div class="project-title">{p.title}</div>
-              <div class="project-desc">{p.desc}</div>
+      {
+        projects.map((project) => (
+          <div class={`project-item reveal reveal-delay-${project.delay}`}>
+            <div class="project-thumb">
+              {project.image ? (
+                <img class="project-thumb-img" src={project.image} alt={project.label} />
+              ) : (
+                <span class="project-thumb-label">{project.label}</span>
+              )}
             </div>
-            <span class="project-arrow">↗</span>
+            <div class="project-meta">
+              <div>
+                <div class="project-cat">{project.cat}</div>
+                <div class="project-title">{project.title}</div>
+                <div class="project-desc">{project.desc}</div>
+              </div>
+              <span class="project-arrow">↗</span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

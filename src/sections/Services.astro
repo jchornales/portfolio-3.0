@@ -1,24 +1,29 @@
 ---
 const services = [
-  { num: '01', name: 'Web Development',           tags: ['React', 'Next.js', 'Tailwind', 'Node.js'] },
-  { num: '02', name: 'Business Automation',       tags: ['n8n', 'Zapier', 'Make', 'Webhooks'] },
-  { num: '03', name: 'Reservation & Scheduling',  tags: ['Calendar Sync', 'Booking Systems'] },
-  { num: '04', name: 'AI Chatbot Integration',    tags: ['OpenAI', 'Messenger', 'Instagram'] },
+  { num: "01", name: "Web Development", tags: ["React", "Next.js", "Tailwind", "Node.js"] },
+  { num: "02", name: "Business Automation", tags: ["n8n", "Zapier", "Make", "Webhooks"] },
+  { num: "03", name: "Reservation & Scheduling", tags: ["Calendar Sync", "Booking Systems"] },
+  { num: "04", name: "AI Chatbot Integration", tags: ["OpenAI", "Messenger", "Instagram"] },
 ];
 ---
+
 <section id="services">
   <div class="container">
     <div class="section-label reveal">What I Do</div>
     <div class="services-list">
-      {services.map((s, i) => (
-        <div class={`service-row reveal reveal-delay-${i + 1}`}>
-          <span class="service-num">{s.num}</span>
-          <span class="service-name">{s.name}</span>
-          <div class="service-tags">
-            {s.tags.map((t) => <span class="stag">{t}</span>)}
+      {
+        services.map((s, i) => (
+          <div class={`service-row reveal reveal-delay-${i + 1}`}>
+            <span class="service-num">{s.num}</span>
+            <span class="service-name">{s.name}</span>
+            <div class="service-tags">
+              {s.tags.map((t) => (
+                <span class="stag">{t}</span>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

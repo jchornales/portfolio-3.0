@@ -1,10 +1,9 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 ---
+
 <div class="fm" id="fm" role="region" aria-label="Quick actions">
-
   <div class="fm-actions" id="fm-actions" aria-hidden="true">
-
     <!-- AI Chat (top slot — add more buttons above this line) -->
     <div class="fm-row">
       <span class="fm-tip">AI Chat</span>
@@ -23,7 +22,6 @@ import { Icon } from 'astro-icon/components';
         <Icon class="fm-sun" name="lucide:sun" width="15" height="15" aria-hidden="true" />
       </button>
     </div>
-
   </div>
 
   <!-- Trigger -->
@@ -31,54 +29,53 @@ import { Icon } from 'astro-icon/components';
     <Icon class="fm-plus" name="lucide:plus" width="16" height="16" aria-hidden="true" />
     <Icon class="fm-x" name="lucide:x" width="14" height="14" aria-hidden="true" />
   </button>
-
 </div>
 
 <script>
-  const fm       = document.getElementById('fm')!;
-  const trigger  = document.getElementById('fm-trigger')!;
-  const actions  = document.getElementById('fm-actions')!;
-  const themeBtn = document.getElementById('fm-theme')!;
-  const themeTip = document.getElementById('fm-theme-tip')!;
-  const chatBtn  = document.getElementById('fm-chat')!;
+  const fm = document.getElementById("fm")!;
+  const trigger = document.getElementById("fm-trigger")!;
+  const actions = document.getElementById("fm-actions")!;
+  const themeBtn = document.getElementById("fm-theme")!;
+  const themeTip = document.getElementById("fm-theme-tip")!;
+  const chatBtn = document.getElementById("fm-chat")!;
 
   // ── Open / close ──────────────────────────────
-  trigger.addEventListener('click', (e) => {
+  trigger.addEventListener("click", (e) => {
     e.stopPropagation();
-    const isOpen = fm.classList.toggle('open');
-    trigger.setAttribute('aria-expanded', String(isOpen));
-    actions.setAttribute('aria-hidden', String(!isOpen));
+    const isOpen = fm.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", String(isOpen));
+    actions.setAttribute("aria-hidden", String(!isOpen));
   });
 
-  document.addEventListener('click', (e) => {
-    if (!fm.contains(e.target as Node) && fm.classList.contains('open')) {
-      fm.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
-      actions.setAttribute('aria-hidden', 'true');
+  document.addEventListener("click", (e) => {
+    if (!fm.contains(e.target as Node) && fm.classList.contains("open")) {
+      fm.classList.remove("open");
+      trigger.setAttribute("aria-expanded", "false");
+      actions.setAttribute("aria-hidden", "true");
     }
   });
 
   // ── Dark mode ─────────────────────────────────
   function applyTheme(theme: string) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    const isDark = theme === 'dark';
-    themeTip.textContent = isDark ? 'Light mode' : 'Dark mode';
-    themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    const isDark = theme === "dark";
+    themeTip.textContent = isDark ? "Light mode" : "Dark mode";
+    themeBtn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
   }
 
-  themeBtn.addEventListener('click', () => {
-    const current = document.documentElement.getAttribute('data-theme') ?? 'light';
-    applyTheme(current === 'dark' ? 'light' : 'dark');
+  themeBtn.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme") ?? "light";
+    applyTheme(current === "dark" ? "light" : "dark");
   });
 
   // ── AI Chat ───────────────────────────────────
   // Dispatches a custom event — wire up your handler with:
   // window.addEventListener('ai-chat-open', () => { ... });
-  chatBtn.addEventListener('click', () => {
-    window.dispatchEvent(new CustomEvent('ai-chat-open'));
-    fm.classList.remove('open');
-    trigger.setAttribute('aria-expanded', 'false');
-    actions.setAttribute('aria-hidden', 'true');
+  chatBtn.addEventListener("click", () => {
+    window.dispatchEvent(new CustomEvent("ai-chat-open"));
+    fm.classList.remove("open");
+    trigger.setAttribute("aria-expanded", "false");
+    actions.setAttribute("aria-hidden", "true");
   });
 </script>

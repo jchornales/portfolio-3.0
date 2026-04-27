@@ -1,37 +1,68 @@
 /* ─── NAV ────────────────────────────────── */
 nav#main-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   padding: 24px 0;
-  background: rgba(255,255,255,.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
-  transition: border-color .3s;
+  transition: border-color 0.3s;
 }
-nav#main-nav.scrolled { border-color: var(--border); }
+nav#main-nav.scrolled {
+  border-color: var(--border);
+}
 
 .nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 24px;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo img { height: 32px; width: auto; }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo img {
+  height: 32px;
+  width: auto;
+}
 .nav-name {
-  font-family: var(--font-h); font-size: 14px; font-weight: 600;
-  letter-spacing: -.2px; color: var(--fg);
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--fg);
 }
 
 .nav-pricing {
-  font-family: var(--font-h); font-size: 13px; font-weight: 500;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 500;
   color: var(--mid);
-  transition: color .2s;
+  transition: color 0.2s;
 }
-.nav-pricing:hover { color: var(--fg); }
+.nav-pricing:hover {
+  color: var(--fg);
+}
 
 .nav-cta {
-  font-family: var(--font-h); font-size: 13px; font-weight: 600;
-  color: var(--fg); border: 1px solid var(--fg);
-  padding: 9px 20px; border-radius: 999px;
-  transition: background .2s, color .2s;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  padding: 9px 20px;
+  border-radius: 999px;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
-.nav-cta:hover { background: var(--fg); color: #fff; }
+.nav-cta:hover {
+  background: var(--fg);
+  color: #fff;
+}

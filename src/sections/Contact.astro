@@ -1,5 +1,7 @@
 ---
+
 ---
+
 <section id="contact">
   <div class="container">
     <div class="section-label reveal">Get in Touch</div>
@@ -9,8 +11,8 @@
           Have a project<br />in mind? Let's<br /><em>talk.</em>
         </h2>
         <p class="contact-meta">
-          Whether you need a website, automation, or a scheduling system — I'd love to hear about it.
-          Reach out and I'll get back to you within 24 hours.
+          Whether you need a website, automation, or a scheduling system — I'd love to hear about
+          it. Reach out and I'll get back to you within 24 hours.
         </p>
         <a class="contact-email-link" href="mailto:jchornales.dev@gmail.com">
           jchornales.dev@gmail.com
@@ -41,7 +43,8 @@
           </div>
           <div class="form-group">
             <label for="cf-message">Message</label>
-            <textarea id="cf-message" placeholder="Tell me about your project…" rows="5" required></textarea>
+            <textarea id="cf-message" placeholder="Tell me about your project…" rows="5" required
+            ></textarea>
           </div>
           <button type="submit" class="form-submit">Send Message →</button>
         </form>
@@ -56,21 +59,23 @@
 </section>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const success = document.getElementById('form-success');
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const success = document.getElementById("form-success");
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const name    = (document.getElementById('cf-name')    as HTMLInputElement).value;
-      const email   = (document.getElementById('cf-email')   as HTMLInputElement).value;
-      const service = (document.getElementById('cf-service') as HTMLSelectElement).value;
-      const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value;
-      const subject = encodeURIComponent(`Portfolio Inquiry${service ? ' — ' + service : ''}`);
-      const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`);
+      const name = (document.getElementById("cf-name") as HTMLInputElement).value;
+      const email = (document.getElementById("cf-email") as HTMLInputElement).value;
+      const service = (document.getElementById("cf-service") as HTMLSelectElement).value;
+      const message = (document.getElementById("cf-message") as HTMLTextAreaElement).value;
+      const subject = encodeURIComponent(`Portfolio Inquiry${service ? " — " + service : ""}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`,
+      );
       window.location.href = `mailto:jchornales.dev@gmail.com?subject=${subject}&body=${body}`;
       setTimeout(() => {
-        form.style.display = 'none';
-        success?.classList.add('show');
+        form.style.display = "none";
+        success?.classList.add("show");
       }, 500);
     });
   }

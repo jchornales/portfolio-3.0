@@ -1,16 +1,33 @@
 /* ─── SKILLS ─────────────────────────────── */
-#skills { padding: 100px 0; border-top: 1px solid var(--border); }
+#skills {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
 
-.skills-wrap { display: flex; flex-wrap: wrap; gap: 10px; }
+.skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
 .skill-pill {
-  font-family: var(--font-h); font-size: 13px; font-weight: 500;
-  color: var(--fg); border: 1px solid var(--border);
-  padding: 8px 18px; border-radius: 999px;
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 999px;
   background: transparent;
-  transition: border-color .2s, color .2s;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
 }
-.skill-pill:hover { border-color: var(--fg); }
+.skill-pill:hover {
+  border-color: var(--fg);
+}
 .skill-pill.primary {
-  border-color: var(--navy); color: var(--navy); font-weight: 700;
+  border-color: var(--navy);
+  color: var(--navy);
+  font-weight: 700;
 }

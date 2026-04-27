@@ -19,12 +19,7 @@
   background: #161616;
 }
 [data-theme="dark"] .project-thumb {
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      #1f1f1f 0, #1f1f1f 1px,
-      #161616 0, #161616 50%
-    );
+  background: repeating-linear-gradient(-45deg, #1f1f1f 0, #1f1f1f 1px, #161616 0, #161616 50%);
   background-size: 12px 12px;
 }
 [data-theme="dark"] .project-meta {
@@ -45,12 +40,24 @@
   background: var(--fg);
   color: #0d0d0d;
 }
-[data-theme="dark"] .price-card.featured .price-tier  { color: rgba(0,0,0,.45); }
-[data-theme="dark"] .price-card.featured .price-desc  { color: rgba(0,0,0,.55); }
-[data-theme="dark"] .price-card.featured .price-period { color: rgba(0,0,0,.45); }
-[data-theme="dark"] .price-card.featured .price-note  { color: rgba(0,0,0,.35); }
-[data-theme="dark"] .price-card.featured .price-feature { color: rgba(0,0,0,.70); }
-[data-theme="dark"] .price-card.featured .price-divider { background: rgba(0,0,0,.12); }
+[data-theme="dark"] .price-card.featured .price-tier {
+  color: rgba(0, 0, 0, 0.45);
+}
+[data-theme="dark"] .price-card.featured .price-desc {
+  color: rgba(0, 0, 0, 0.55);
+}
+[data-theme="dark"] .price-card.featured .price-period {
+  color: rgba(0, 0, 0, 0.45);
+}
+[data-theme="dark"] .price-card.featured .price-note {
+  color: rgba(0, 0, 0, 0.35);
+}
+[data-theme="dark"] .price-card.featured .price-feature {
+  color: rgba(0, 0, 0, 0.7);
+}
+[data-theme="dark"] .price-card.featured .price-divider {
+  background: rgba(0, 0, 0, 0.12);
+}
 [data-theme="dark"] .price-card.featured .price-cta-btn {
   border-color: #0c0c0c;
   color: #0c0c0c;

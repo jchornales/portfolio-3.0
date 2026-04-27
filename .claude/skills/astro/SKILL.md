@@ -82,7 +82,10 @@ const { title, href, description } = Astro.props;
 
 <style>
   /* Scoped to this component automatically */
-  .card { border: 1px solid #eee; padding: 1rem; }
+  .card {
+    border: 1px solid #eee;
+    padding: 1rem;
+  }
 </style>
 ```
 
@@ -101,8 +104,8 @@ Dynamic route with `getStaticPaths`:
 ---
 // src/pages/blog/[slug].astro
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
@@ -122,10 +125,10 @@ Content collections give you type-safe access to Markdown and MDX files:
 
 ```typescript
 // src/content/config.ts
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection } from "astro:content";
 
 const blog = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
@@ -140,20 +143,22 @@ export const collections = { blog };
 ```astro
 ---
 // src/pages/blog/index.astro
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection('blog'))
-  .filter(p => !p.data.draft)
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <ul>
-  {posts.map(post => (
-    <li>
-      <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-      <time>{post.data.date.toLocaleDateString()}</time>
-    </li>
-  ))}
+  {
+    posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        <time>{post.data.date.toLocaleDateString()}</time>
+      </li>
+    ))
+  }
 </ul>
 ```
 
@@ -163,8 +168,8 @@ By default, UI framework components render to static HTML with no JS. Use `clien
 
 ```astro
 ---
-import Counter from '../components/Counter.tsx';  // React component
-import VideoPlayer from '../components/VideoPlayer.svelte';
+import Counter from "../components/Counter.tsx"; // React component
+import VideoPlayer from "../components/VideoPlayer.svelte";
 ---
 
 <!-- Static HTML — no JavaScript sent to browser -->
@@ -192,7 +197,7 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = 'My Astro Site' } = Astro.props;
+const { title, description = "My Astro Site" } = Astro.props;
 ---
 
 <html lang="en">
@@ -204,7 +209,8 @@ const { title, description = 'My Astro Site' } = Astro.props;
   <body>
     <nav>...</nav>
     <main>
-      <slot />  <!-- page content renders here -->
+      <slot />
+      <!-- page content renders here -->
     </main>
     <footer>...</footer>
   </body>
@@ -214,7 +220,7 @@ const { title, description = 'My Astro Site' } = Astro.props;
 ```astro
 ---
 // src/pages/about.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About Us">
@@ -229,11 +235,11 @@ Enable SSR for dynamic pages by setting an adapter:
 
 ```javascript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
-  output: 'hybrid',  // 'static' | 'server' | 'hybrid'
+  output: "hybrid", // 'static' | 'server' | 'hybrid'
   adapter: vercel(),
 });
 ```
@@ -246,16 +252,16 @@ Opt individual pages into SSR with `export const prerender = false`.
 
 ```typescript
 // src/pages/rss.xml.ts
-import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
 
 export async function GET(context) {
-  const posts = await getCollection('blog');
+  const posts = await getCollection("blog");
   return rss({
-    title: 'My Blog',
-    description: 'Latest posts',
+    title: "My Blog",
+    description: "Latest posts",
     site: context.site,
-    items: posts.map(post => ({
+    items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.date,
       link: `/blog/${post.slug}/`,
@@ -268,15 +274,15 @@ export async function GET(context) {
 
 ```typescript
 // src/pages/api/subscribe.ts
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 export const POST: APIRoute = async ({ request }) => {
   const { email } = await request.json();
 
   if (!email) {
-    return new Response(JSON.stringify({ error: 'Email required' }), {
+    return new Response(JSON.stringify({ error: "Email required" }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
     });
   }
 
@@ -289,23 +295,27 @@ export const POST: APIRoute = async ({ request }) => {
 
 ```tsx
 // src/components/SearchBox.tsx
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function SearchBox() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
   async function search(e: React.FormEvent) {
     e.preventDefault();
-    const data = await fetch(`/api/search?q=${query}`).then(r => r.json());
+    const data = await fetch(`/api/search?q=${query}`).then((r) => r.json());
     setResults(data);
   }
 
   return (
     <form onSubmit={search}>
-      <input value={query} onChange={e => setQuery(e.target.value)} />
+      <input value={query} onChange={(e) => setQuery(e.target.value)} />
       <button type="submit">Search</button>
-      <ul>{results.map(r => <li key={r.id}>{r.title}</li>)}</ul>
+      <ul>
+        {results.map((r) => (
+          <li key={r.id}>{r.title}</li>
+        ))}
+      </ul>
     </form>
   );
 }
@@ -313,8 +323,9 @@ export default function SearchBox() {
 
 ```astro
 ---
-import SearchBox from '../components/SearchBox.tsx';
+import SearchBox from "../components/SearchBox.tsx";
 ---
+
 <!-- Hydrated immediately — this island is interactive -->
 <SearchBox client:load />
 ```
