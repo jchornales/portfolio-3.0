@@ -14,9 +14,17 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/react": "^5.0.4",
+    "@hookform/resolvers": "^5.2.2",
     "@iconify-json/lucide": "^1.2.104",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "astro": "^6.1.9",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-hook-form": "^7.74.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

@@ -4,6 +4,7 @@ import '../styles/sections.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import FloatingMenu from '../components/FloatingMenu.astro';
+import AiChat from '../components/AiChat.astro';
 
 interface Props {
   title?: string;
@@ -42,6 +43,7 @@ const {
     <slot />
     <Footer />
     <FloatingMenu />
+    <AiChat />
 
     <script>
       const mainNav = document.getElementById('main-nav');
