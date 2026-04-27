@@ -1,4 +1,5 @@
 @import './sections/nav.css';
+@import './sections/floating-menu.css';
 @import './sections/hero.css';
 @import './sections/projects.css';
 @import './sections/services.css';

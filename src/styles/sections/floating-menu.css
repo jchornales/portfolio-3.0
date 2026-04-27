@@ -1,0 +1,142 @@
+/* ─── FLOATING MENU ─────────────────────── */
+.fm {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* right-align trigger & action rows */
+  gap: 8px;
+}
+
+/* Stack of action rows */
+.fm-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.fm-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Action buttons ─────────────────────── */
+.fm-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--mid);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  /* closed state */
+  opacity: 0;
+  transform: translateY(10px) scale(0.88);
+  transition:
+    opacity 0.22s var(--ease),
+    transform 0.28s cubic-bezier(.34, 1.56, .64, 1),
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.fm-btn svg { pointer-events: none; }
+
+/* open state */
+.fm.open .fm-actions { pointer-events: auto; }
+.fm.open .fm-btn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Opening stagger — bottom item (theme, row 2) first, top item (chat, row 1) second */
+.fm.open .fm-row:nth-child(1) .fm-btn { transition-delay: 0.07s; }
+.fm.open .fm-row:nth-child(2) .fm-btn { transition-delay: 0.00s; }
+
+.fm-btn:hover {
+  color: var(--fg);
+  background: var(--border);
+  border-color: var(--mid);
+}
+
+/* ── Theme icon visibility ──────────────── */
+/* Light mode shows moon (→ switch to dark)  */
+/* Dark mode shows sun (→ switch to light)   */
+.fm-sun { display: none; }
+.fm-moon { display: block; }
+[data-theme="dark"] .fm-sun { display: block; }
+[data-theme="dark"] .fm-moon { display: none; }
+
+/* ── Tooltip label ──────────────────────── */
+.fm-tip {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  color: var(--bg);
+  background: var(--fg);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.fm.open .fm-row:hover .fm-tip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Trigger button ─────────────────────── */
+.fm-trigger {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s;
+}
+
+.fm-trigger:hover {
+  transform: scale(1.07);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+}
+
+.fm-trigger:active { transform: scale(0.95); }
+
+/* Plus and X icons overlap in the same grid cell */
+.fm-trigger svg { grid-area: 1 / 1; }
+
+.fm-plus {
+  transition: opacity 0.2s, transform 0.28s var(--ease);
+}
+.fm-x {
+  opacity: 0;
+  transform: rotate(-45deg);
+  transition: opacity 0.2s, transform 0.28s var(--ease);
+}
+
+.fm.open .fm-plus { opacity: 0; transform: rotate(45deg); }
+.fm.open .fm-x    { opacity: 1; transform: rotate(0deg); }
+
+/* ── Mobile adjustments ─────────────────── */
+@media (max-width: 480px) {
+  .fm { bottom: 20px; right: 20px; }
+}

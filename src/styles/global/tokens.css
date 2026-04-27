@@ -12,3 +12,11 @@
   --max-w:       1100px;
   --ease:        cubic-bezier(.4,0,.2,1);
 }
+
+[data-theme="dark"] {
+  --bg:     #0d0d0d;
+  --fg:     #efefef;
+  --mid:    #888888;
+  --muted:  #484848;
+  --border: #242424;
+}

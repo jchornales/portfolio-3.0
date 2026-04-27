@@ -1,0 +1,86 @@
+/* ─── DARK MODE OVERRIDES ─────────────────
+   All hardcoded colors that don't use CSS
+   tokens get corrected here.
+───────────────────────────────────────── */
+
+/* ── Nav ── */
+[data-theme="dark"] nav#main-nav {
+  background: rgba(13, 13, 13, 0.92);
+}
+
+/* ── Hero ── */
+[data-theme="dark"] .hero-logo-bg {
+  opacity: 0.07;
+  filter: grayscale(1) invert(1);
+}
+
+/* ── Projects ── */
+[data-theme="dark"] .project-item {
+  background: #161616;
+}
+[data-theme="dark"] .project-thumb {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #1f1f1f 0, #1f1f1f 1px,
+      #161616 0, #161616 50%
+    );
+  background-size: 12px 12px;
+}
+[data-theme="dark"] .project-meta {
+  background: #161616;
+}
+
+/* ── Skills ── */
+[data-theme="dark"] .skill-pill.primary {
+  border-color: #4a6890;
+  color: #7ba4cc;
+}
+
+/* ── Pricing ── */
+[data-theme="dark"] .price-card {
+  background: #161616;
+}
+[data-theme="dark"] .price-card.featured {
+  background: var(--fg);
+  color: #0d0d0d;
+}
+[data-theme="dark"] .price-card.featured .price-tier  { color: rgba(0,0,0,.45); }
+[data-theme="dark"] .price-card.featured .price-desc  { color: rgba(0,0,0,.55); }
+[data-theme="dark"] .price-card.featured .price-period { color: rgba(0,0,0,.45); }
+[data-theme="dark"] .price-card.featured .price-note  { color: rgba(0,0,0,.35); }
+[data-theme="dark"] .price-card.featured .price-feature { color: rgba(0,0,0,.70); }
+[data-theme="dark"] .price-card.featured .price-divider { background: rgba(0,0,0,.12); }
+[data-theme="dark"] .price-card.featured .price-cta-btn {
+  border-color: #0c0c0c;
+  color: #0c0c0c;
+}
+[data-theme="dark"] .price-card.featured .price-cta-btn:hover {
+  background: #0c0c0c;
+  color: var(--fg);
+}
+
+/* ── Contact form ── */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  color-scheme: dark;
+}
+[data-theme="dark"] .form-submit {
+  color: var(--bg);
+}
+
+/* ── Buttons ── */
+[data-theme="dark"] .btn-solid {
+  color: var(--bg);
+}
+
+/* Pricing CTA — dark fg (#efefef) as bg needs dark text */
+[data-theme="dark"] .price-cta-btn:hover {
+  color: var(--bg);
+}
+/* Featured card overrides above */
+[data-theme="dark"] .price-card.featured .price-cta-btn:hover {
+  background: #0c0c0c;
+  color: var(--fg);
+}

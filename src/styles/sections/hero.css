@@ -6,6 +6,48 @@
   position: relative;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: -25%;
+  background-image:
+    linear-gradient(to right, rgba(58, 186, 120, 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(58, 186, 120, 0.13) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: rotate(-5deg);
+  mask-image:
+    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0,0,0,0.5) 45%, transparent 75%),
+    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0,0,0,0.35) 0%, transparent 65%);
+  mask-composite: add;
+  -webkit-mask-image:
+    radial-gradient(ellipse 55% 65% at 72% 42%, black 0%, rgba(0,0,0,0.5) 45%, transparent 75%),
+    radial-gradient(ellipse 35% 45% at 30% 70%, rgba(0,0,0,0.35) 0%, transparent 65%);
+  -webkit-mask-composite: source-over;
+}
+
+.hero-logo-bg {
+  position: absolute;
+  right: -3%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 88%;
+  width: auto;
+  opacity: 0.045;
+  filter: grayscale(1);
+}
+
+#hero .container {
+  position: relative;
+  z-index: 1;
+}
+
 .hero-tag {
   font-family: var(--font-h); font-size: 12px; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase; color: var(--muted);

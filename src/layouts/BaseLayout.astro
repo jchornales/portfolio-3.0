@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../styles/sections.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import FloatingMenu from '../components/FloatingMenu.astro';
 
 interface Props {
   title?: string;
@@ -27,11 +28,20 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <!-- Inline theme init: runs before paint to prevent flash of wrong theme -->
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('theme');
+        var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || preferred);
+      })();
+    </script>
   </head>
   <body>
     <Nav />
     <slot />
     <Footer />
+    <FloatingMenu />
 
     <script>
       const mainNav = document.getElementById('main-nav');
