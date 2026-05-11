@@ -112,7 +112,7 @@ src/
 
 Want to work together?
 
-- **Site** — [justinehornales.dev](https://justinehornales.dev)
+- **Site** — [justinehornales.dev](https://justinehornales.github.io)
 - **Email** — <jchornales.dev@gmail.com>
 - **Location** — Philippines · Remote-ready
 
