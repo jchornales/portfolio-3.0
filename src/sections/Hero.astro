@@ -1,11 +1,11 @@
 ---
-
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="hero">
   <div class="hero-bg" aria-hidden="true">
     <div class="hero-grid"></div>
-    <img src="/uploads/Logo-2.1.svg" class="hero-logo-bg" alt="" />
+    <img src={`${base}/uploads/Logo-2.1.svg`} class="hero-logo-bg" alt="" />
   </div>
   <div class="container">
     <div class="hero-tag reveal">
