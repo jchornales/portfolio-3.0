@@ -15,50 +15,8 @@ interface Message {
   time: string;
 }
 
-const RESPONSES: Array<[RegExp, string]> = [
-  [
-    /service|offer|what.*(you|he|justine).*(do|build|make)|help/i,
-    "Justine builds four things: <b>web apps</b> (React, Next.js), <b>business automations</b> (n8n, Zapier, Make), <b>booking &amp; scheduling systems</b>, and <b>AI chatbots</b> for platforms like Messenger and Instagram. What are you looking for?",
-  ],
-  [
-    /price|cost|rate|charge|fee|budget|how much/i,
-    "Pricing is scoped per project. Check out the <b>Pricing section</b> on this page for starting rates, or get in touch for a custom quote — Justine usually replies within a day.",
-  ],
-  [
-    /contact|reach|email|message|talk|hire|work together/i,
-    "Best way to reach Justine is via the <b>Contact section</b> below, or email directly: <b>jchornales.dev@gmail.com</b>. He's available for freelance and full-time.",
-  ],
-  [
-    /project|work|portfolio|example|past|built|previous/i,
-    "Recent work includes a <b>CRM → Slack automation</b> saving 10 hrs/week, a <b>Facebook lead qualifier bot</b> that books calls automatically, a <b>custom booking system</b> with calendar sync, and production web apps for business clients. Scroll up to Projects for more!",
-  ],
-  [
-    /tech|stack|use|language|framework|tool|react|next|node/i,
-    "Frontend: React, Next.js, Tailwind, TypeScript. Backend: Node.js, Supabase, Firebase, PostgreSQL. Automation: n8n, Zapier, Make. AI: OpenAI API. The portfolio itself is built with Astro.",
-  ],
-  [
-    /available|hire|open|freelance|full.?time|opportunit/i,
-    "Yes — currently open to <b>freelance projects</b> and <b>full-time roles</b>. Based in the Philippines (UTC+8) and fully remote-ready.",
-  ],
-  [
-    /location|where|timezone|remote|country|philippines/i,
-    "Based in the <b>Philippines (UTC+8)</b>, fully remote-ready and comfortable working with clients worldwide.",
-  ],
-  [
-    /who|about|justine|yourself/i,
-    "Justine Hornales is a developer who builds websites, automates business workflows, and integrates AI — so businesses run smarter. He's available for freelance and full-time work.",
-  ],
-];
-
-const FALLBACK =
-  "Great question! For a detailed answer, reach out via the Contact section or email <b>jchornales.dev@gmail.com</b> — Justine typically replies within a day.";
-
-function getBotResponse(msg: string): string {
-  for (const [pattern, response] of RESPONSES) {
-    if (pattern.test(msg)) return response;
-  }
-  return FALLBACK;
-}
+const ERROR_TEXT =
+  "Something went wrong — try again or email <b>jchornales.dev@gmail.com</b> directly.";
 
 function timeNow() {
   return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -82,6 +40,8 @@ export default function AiChat() {
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<Element | null>(null);
+  const pendingRef = useRef<string | null>(null);
+  const isProcessingRef = useRef(false);
 
   const {
     register,
@@ -97,17 +57,14 @@ export default function AiChat() {
 
   const messageValue = watch("message");
 
-  // Auto-scroll when messages change or bot is typing
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isSubmitting]);
 
-  // Focus input whenever panel opens
   useEffect(() => {
     if (isOpen) requestAnimationFrame(() => setFocus("message"));
   }, [isOpen, setFocus]);
 
-  // Listen for the FloatingMenu custom event
   useEffect(() => {
     const handle = () => {
       triggerRef.current = document.activeElement;
@@ -129,18 +86,56 @@ export default function AiChat() {
     [closeChat],
   );
 
+  const processMessage = useCallback(
+    async (text: string, history: Message[]): Promise<void> => {
+      const userMsg: Message = { id: uid(), from: "user", text, time: timeNow() };
+      setMessages((prev) => [...prev, userMsg]);
+
+      let botText: string;
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: history.map(({ from, text: t }) => ({ from, text: t })),
+            userMessage: text,
+          }),
+        });
+        botText = res.ok
+          ? ((await res.json()) as { response: string }).response
+          : ERROR_TEXT;
+      } catch {
+        botText = ERROR_TEXT;
+      }
+
+      const botMsg: Message = { id: uid(), from: "bot", text: botText, time: timeNow() };
+      setMessages((prev) => [...prev, botMsg]);
+
+      if (pendingRef.current) {
+        const queued = pendingRef.current;
+        pendingRef.current = null;
+        await processMessage(queued, [...history, userMsg, botMsg]);
+      }
+    },
+    [],
+  );
+
   const onSubmit = async (data: MessageForm) => {
     const text = data.message.trim();
-    setMessages((prev) => [...prev, { id: uid(), from: "user", text, time: timeNow() }]);
     reset();
 
-    await new Promise<void>((r) => setTimeout(r, 900 + Math.random() * 700));
+    if (isProcessingRef.current) {
+      pendingRef.current = text;
+      return;
+    }
 
-    setMessages((prev) => [
-      ...prev,
-      { id: uid(), from: "bot", text: getBotResponse(text), time: timeNow() },
-    ]);
-    requestAnimationFrame(() => setFocus("message"));
+    isProcessingRef.current = true;
+    try {
+      await processMessage(text, messages);
+      requestAnimationFrame(() => setFocus("message"));
+    } finally {
+      isProcessingRef.current = false;
+    }
   };
 
   return (
