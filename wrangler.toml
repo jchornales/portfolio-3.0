@@ -4,5 +4,5 @@ pages_build_output_dir = "dist"
 
 [[kv_namespaces]]
 binding = "CHAT_CACHE"
-id = "placeholder-replace-with-real-id"
-preview_id = "placeholder-replace-with-real-id"
+id = "8f98a62ef5654743b99ffd4502f2bb2b"
+preview_id = "8f98a62ef5654743b99ffd4502f2bb2b"
