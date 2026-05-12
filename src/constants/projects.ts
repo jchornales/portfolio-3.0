@@ -5,7 +5,7 @@ export const projects = [
     cat: "Web Development",
     title: "Rake Engineering Consultancy Website",
     desc: "Production website for a civil engineering consultancy — built for speed, credibility, and lead generation.",
-    image: `${base}/uploads/rake-homepage.png`,
+    image: `${base}uploads/rake-homepage.png`,
     delay: 1,
   },
   {
