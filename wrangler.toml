@@ -1,0 +1,8 @@
+name = "jh-portfolio"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[[kv_namespaces]]
+binding = "CHAT_CACHE"
+id = "placeholder-replace-with-real-id"
+preview_id = "placeholder-replace-with-real-id"
