@@ -40,11 +40,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const openai = new OpenAI({ apiKey: context.env.OPENAI_API_KEY });
 
+    const recentHistory = messages.slice(-10);
+
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        ...buildOpenAIMessages(messages),
+        ...buildOpenAIMessages(recentHistory),
         { role: "user", content: userMessage },
       ],
     });

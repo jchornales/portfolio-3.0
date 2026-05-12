@@ -101,9 +101,8 @@ export default function AiChat() {
             userMessage: text,
           }),
         });
-        botText = res.ok
-          ? ((await res.json()) as { response: string }).response
-          : ERROR_TEXT;
+        const data = res.ok ? ((await res.json()) as { response?: string }) : null;
+        botText = data?.response ?? ERROR_TEXT;
       } catch {
         botText = ERROR_TEXT;
       }
