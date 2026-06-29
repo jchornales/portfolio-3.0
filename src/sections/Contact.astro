@@ -1,5 +1,5 @@
 ---
-
+import ContactForm from "../components/ContactForm.tsx";
 ---
 
 <section id="contact">
@@ -19,64 +19,8 @@
         </a>
       </div>
       <div class="reveal reveal-delay-2">
-        <form class="contact-form" id="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cf-name">Name</label>
-              <input id="cf-name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="form-group">
-              <label for="cf-email">Email</label>
-              <input id="cf-email" type="email" placeholder="your@email.com" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="cf-service">I need help with</label>
-            <select id="cf-service">
-              <option value="">Select a service…</option>
-              <option>Web Development</option>
-              <option>Business Automation</option>
-              <option>Reservation &amp; Scheduling</option>
-              <option>AI Chatbot Integration</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" placeholder="Tell me about your project…" rows="5" required
-            ></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send It &rarr;</button>
-        </form>
-        <div class="form-success" id="form-success">
-          <div class="form-success-icon">✓</div>
-          <h3>Message sent!</h3>
-          <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
-        </div>
+        <ContactForm client:visible />
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  const form = document.getElementById("contact-form") as HTMLFormElement | null;
-  const success = document.getElementById("form-success");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = (document.getElementById("cf-name") as HTMLInputElement).value;
-      const email = (document.getElementById("cf-email") as HTMLInputElement).value;
-      const service = (document.getElementById("cf-service") as HTMLSelectElement).value;
-      const message = (document.getElementById("cf-message") as HTMLTextAreaElement).value;
-      const subject = encodeURIComponent(`Portfolio Inquiry${service ? " — " + service : ""}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`,
-      );
-      window.location.href = `mailto:jchornales.dev@gmail.com?subject=${subject}&body=${body}`;
-      setTimeout(() => {
-        form.style.display = "none";
-        success?.classList.add("show");
-      }, 500);
-    });
-  }
-</script>
