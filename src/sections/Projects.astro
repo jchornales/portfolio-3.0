@@ -1,40 +1,11 @@
 ---
+import ProjectsGrid from "../components/ProjectsGrid.tsx";
 import { projects } from "../constants/projects";
 ---
 
 <section id="projects">
   <div class="container">
     <h2 class="section-label reveal">Selected Work</h2>
-    <div class="projects-grid">
-      {
-        projects.map((project) => (
-          <div class={`project-item reveal reveal-delay-${project.delay}`}>
-            <div class="project-thumb">
-              {project.image ? (
-                <img
-                  class="project-thumb-img"
-                  src={project.image}
-                  alt={`${project.title} — screenshot`}
-                  width="800"
-                  height="500"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <span class="project-thumb-label">{project.cat}</span>
-              )}
-            </div>
-            <div class="project-meta">
-              <div>
-                <div class="project-cat">{project.cat}</div>
-                <div class="project-title">{project.title}</div>
-                <div class="project-desc">{project.desc}</div>
-              </div>
-              <span class="project-arrow">↗</span>
-            </div>
-          </div>
-        ))
-      }
-    </div>
+    <ProjectsGrid client:visible projects={projects} />
   </div>
 </section>

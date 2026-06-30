@@ -25,6 +25,10 @@
 [data-theme="dark"] .project-meta {
   background: #161616;
 }
+[data-theme="dark"] .project-modal-media {
+  background: repeating-linear-gradient(-45deg, #1f1f1f 0, #1f1f1f 1px, #161616 0, #161616 50%);
+  background-size: 12px 12px;
+}
 
 /* ── Skills ── */
 [data-theme="dark"] .skill-pill.primary {
